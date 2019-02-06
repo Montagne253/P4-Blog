@@ -21,34 +21,7 @@ $req = $bdd->prepare('SELECT auteur, commentaire, DATE_FORMAT(date_commentaire, 
 $req->execute(array($_GET['billet']));
 
 
-    if (!empty($_POST)) {
-
-        $validation = true;
-
-    
-        if(empty($_POST['auteur'])) {
-            $error_auteur = 'Aucun auteur';
-            $validation = false;
-
-        }
-        if(empty($_POST['commentaire'])) {
-            $error_commentaire = 'Le commentaire est vide';
-            $validation = false;
-        }
-        if($validation==true) {
-                    // Insertion du message à l'aide d'une requête préparée
-            $req = $bdd->prepare('INSERT INTO comment (id_billet, auteur, commentaire, date_commentaire) VALUES(:idBillet, :auteur, :commentaire, NOW())');
-            $req->execute(array(
-               "idBillet" => $_GET['billet'], 
-                "auteur" => $_POST['auteur'], 
-                "commentaire" => $_POST['commentaire']
-            ));
-            
-            // Redirection du visiteur vers la page du commentaire
-            header('Location: editbillet.php?billet=' . $_GET['billet']);
-
-        }
-    }
+  
 ?>
 
 
