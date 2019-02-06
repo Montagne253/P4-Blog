@@ -11,16 +11,30 @@ if(isset($_SESSION['id']))
     ));
     $user = $requser->fetch();
 
-    if(isset($_POST['newpseudo']) AND !empty($_POST['newpseudo']) AND $_POST['newpseudo'] != $user['pseudo']) 
+
+
+    if(isset($_POST['newpseudo'], $_POST['newemail'], $_POST['newmdp']) AND !empty($_POST['newpseudo'])) 
     {
+        
         $newpseudo = htmlspecialchars($_POST['newpseudo']);
-        $insertpseudo = $db->prepare("UPDATE editeur SET newpseudo = ? WHERE id = ?");
+        $newemail = htmlspecialchars($_POST['newemail']);
+        $newmdp = $_POST['newmdp'];
+        $confirm_password = $_POST['confirmnewmdp'];
+        $hash_password = password_hash($newmdp, PASSWORD_BCRYPT);
+
+        $insertpseudo = $bdd->prepare("UPDATE editeur SET pseudo = ?, email = ?, pass = ?, date_modification = NOW() WHERE id = ?");
         $insertpseudo->execute(array(
             $newpseudo,
+            $newemail,
+            $hash_password,
             $_SESSION['id']
         ));
+
+
         header('Location: profil.php?id='.$_SESSION['id']);
-    }
+    } 
+    
+    
 
 
 
@@ -43,10 +57,16 @@ if(isset($_SESSION['id']))
         <form method="POST" action="">
             <input type="text" name="newpseudo" placeholder="pseudo" value="<?php echo $user['pseudo']; ?>" /><br><br>
             <input type="email" name="newemail" placeholder="email" value="<?php echo $user['email']; ?>"/><br><br>
-            <input type="password" name="newmdp" placeholder="password"/><br><br>
-            <input type="password" name="confirmnewmdp" placeholder="confirm password" /><br><br>
+            <input type="password" name="newmdp" placeholder="new password"/><br><br>
+            <input type="password" name="confirmnewmdp" placeholder="confirm new password" /><br><br>
             <input class="btn_submit_edit" type="submit"  value="Enregister les changements" /><br><br>
         </form>
+<?php 
+    if(isset($error))
+    {
+        echo '<font color="red">' . $error . "</font>";
+    }
+?>
     </div>
     <br>
     <br>
