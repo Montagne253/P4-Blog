@@ -1,0 +1,490 @@
+
+
+/*BODY*/
+
+
+body {
+	margin: 0;
+	font-family: 'Roboto Condensed', sans-serif;
+	background-color: #010405;
+	color: #fff;
+}
+
+
+
+/*FONT AWESOME*/
+
+
+
+
+
+
+
+/*====================================
+=      HEADER | NAVIGATION FORM      =
+====================================*/
+
+
+
+.header {
+	z-index: 50;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 100px;
+	background-color:#081b226e;
+}
+
+.header__element {
+	width: 100%;
+	height: 100%;
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.title {
+	display: block;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	margin-left: 100px;
+	color: #fff;
+}
+
+
+
+.navigation__menu--header {
+	display: flex;
+	margin: auto;
+	position: static;
+	width: 400px;
+	height: 80px;
+} 
+
+
+.navigation__menu__id--header {
+	width: 25%;
+	height: 100%;
+	text-align: center;
+}
+
+.navigation__menu__link {
+	display: block;
+	width: 25%;
+	height: 25%;
+	justify-content: center;
+	margin: auto;
+	border-top: 5px solid #3D7A99;
+	line-height: 80px;
+	cursor: pointer;
+	color: #FFF;
+}
+
+
+
+
+.navigation__menu__link__1 {
+	display: block;
+	width: 25%;
+	height: 25%;
+	justify-content: center;
+	margin: auto;
+	border-top: 5px solid #5CADD3;
+	line-height: 50px;
+	color: #fff;
+}
+
+
+
+.navigation__menu__link:hover {
+	border-top: 5px solid #fff;
+	color: #5CADD3;
+	align-items: center;
+	text-decoration: none;
+	margin: 0;
+}
+
+.navigation__link {
+	display: block;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	margin: auto;
+	border-top: 5px solid #081b22;
+
+	line-height: 80px;
+	color: rgb(150, 202, 226);
+
+}
+
+
+.navigation__link__1 {
+	display: block;
+	width: 25%;
+	height: 15%;
+	color: rgb(150, 202, 226);
+	justify-content: center;
+	margin: auto;
+	border-top: 5px solid rgb(150, 202, 226);
+	line-height: 80px;
+	border-radius: 15px;
+}
+
+.navigation__link__billet {
+	display: block;
+	width: 25%;
+	height: 15%;
+	color: rgb(150, 202, 226);
+	justify-content: center;
+	margin: auto;
+	border-top: 5px solid rgb(150, 202, 226);
+	line-height: 80px;
+	border-radius: 15px;
+	margin-top: 100px;
+
+}
+
+.navigation__link__1:hover {
+	border-top: 5px solid #fff;
+	color: #fff;
+}
+
+.img_edit {
+	margin-left: 450px;
+}
+
+
+.navigation__link:hover {
+	
+	border-top: 5px solid #fff;
+	color: #fff;
+	align-items: center;
+	text-decoration: none;
+	margin: 0;
+}
+
+.button_submit {
+	cursor: pointer;
+
+}
+
+
+.ecriture {
+	background-image: url('projet4/img/ecriture.jpeg') ;
+	width: 50%;
+	height: 50%;
+}
+
+/* webkit solution */
+::-webkit-input-placeholder
+
+{ 
+	text-align:center; 
+}
+/* mozilla solution */
+input:-moz-placeholder 
+{
+	 text-align:center; 
+}
+
+.btn_submit_edit {
+	width: 500px;
+	height: 40px;
+	cursor: pointer;
+	font-size: 20px;
+}
+
+.btn_submit_comment {
+	width: 310px;
+	height: 30px;
+	background-color: #3D7A99;
+	color: #fff;
+	cursor: pointer;
+	font-size: 16px;
+	
+}
+
+.btn_submit_comment:hover {
+	background-color: #fff;
+	color: #081b22;
+}
+
+.btn_submit {
+	width: 190px;
+	height: 30px;
+	background-color: #3D7A99;
+	color: #fff;
+	cursor: pointer;
+	font-size: 16px;
+	margin: 25px;
+}
+
+.btn_submit:hover {
+	background-color: #fff;
+	color: #081b22;
+}
+
+.link_billet {
+	margin: 0;
+	
+}
+
+.story {
+	text-align: justify;
+}
+
+#scrollUp
+{
+bottom : 10px;
+margin: 10px;
+opacity: 0.5;
+}
+
+.top {
+	margin-left: 95%;
+	margin-bottom: 20px;
+	
+}
+
+/* ul, li, a, img, h1, h2, figure, section */
+
+.form {
+	margin: 5% !important;
+	text-align: right;
+	margin-top: 150px;
+}
+
+
+h1, h3
+{
+    text-align:center;
+}
+
+h3
+{
+    background-color:black;
+    color:white;
+    font-size:20px;
+	margin-bottom:0px;
+	
+}
+
+h4 {
+	font-size: 18px;
+	text-align: center;
+	color: #3D7A99;
+	margin-top: 50px;
+	margin-bottom: 100px;
+}
+
+h5 {
+	font-size: 20px;
+	text-align: center;
+	color: #c9c5c5ad;
+}
+
+#commentaire {
+	height: 150px;
+	width: 300px;
+}
+
+#auteur {
+	width: 300px;
+}
+
+.comment h5 {
+	text-align: center;
+	margin-top: 60px;
+	font-size: 20px;
+	
+	
+}
+
+.comment p {
+	color: #fff;
+	margin-top: 5px;
+	font-size: 18px;
+	text-align: center;
+
+}
+
+.news p
+{
+	background-color:#081b22;
+	color: #fff;
+	margin-top:0px;
+	font-size: 18px;
+	padding: 10px;
+	text-align: center;
+}
+.news
+{
+    width:70%;
+    margin:auto;
+}
+
+a
+{
+    text-align: center;
+    color: #3D7A99;
+}
+
+
+#profil {
+	background-color: #010405;
+	color: #FFF;
+	margin: 14px;
+	padding: 24px;
+	height: 100%;
+	
+}
+
+ul {
+	margin: 0px;
+	padding: 0px;
+}
+
+li {
+	list-style: none;
+
+}
+
+a {
+	display: block;
+	font-size: 16px;
+	color: #3D7A99;
+	text-decoration: none;
+	border: none;
+	outline: none;
+	margin-left: 1000px;
+	
+}
+
+img {
+	border: none;
+	outline: none;
+	display: block;
+}
+
+section {
+	box-sizing: border-box;
+	width: 100%;
+}
+
+
+
+h1, h2 {
+	
+	color: #fff;
+}
+
+table {
+	margin-right: 150px;
+}
+
+input {
+	font-size: 16px;
+	width: 250px;
+	height: 30px;
+	margin: auto;
+	padding: 5px;
+}
+
+label {
+	color:rgb(150, 202, 226);
+}
+
+
+
+/*====================================
+=            HOME FORM            =
+====================================*/
+
+
+
+.home
+{
+	width: 100%;
+	height: 65vh;
+	padding-top: 100px;
+	
+}
+
+.home__container
+{
+	padding-top: 100px;
+	background-image: url('webagency_images/images/slider/bg1.jpg') ;
+	width: 100%;
+	height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+
+
+
+
+/*====================================
+=            SLIDER FORM            =
+====================================*/
+
+
+
+
+
+
+
+
+/*====================================
+=         Acceuil FORM           =
+====================================*/
+
+
+
+
+
+
+
+/*====================================
+=          Billets FORM            =
+====================================*/
+
+
+
+
+
+
+
+
+
+
+
+/*====================================
+=            Admin FORM            =
+====================================*/
+
+
+
+
+
+
+
+/*==================================
+=                     =
+==================================*/
+
+
+
+
+
+
+
+/*==================================
+=            MEDIA QUERIES         =
+==================================*/
+
+
+
+
