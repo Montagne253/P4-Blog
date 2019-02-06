@@ -1,12 +1,14 @@
 <?php 
 session_start();
 
-if(isset($_SESSION['id'])) {
-    header("Location: profil.php");
-    exit();
-}
+
        
 $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo932018');
+
+if(isset($_SESSION['id'])) {
+    header('Location: profil.php?id='.$_SESSION['id']);
+    exit();
+}
         
         
 
@@ -32,7 +34,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
                 {
                     $_SESSION['id'] = $userinfo['id'];
                    
-                    header("Location: profil.php");
+                   header('Location: profil.php?id='.$_SESSION['id']);
                     
 
                 }
@@ -82,7 +84,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
     <br>
     <br>
     <a class="navigation__link__1" href="index.php">Retour au blog</a>
-    <a class="navigation__link__1" href="login.php">S'inscrire</a>
+    <a class="navigation__link__1" href="signin.php">S'inscrire</a>
 
    
 
