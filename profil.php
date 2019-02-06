@@ -44,7 +44,7 @@ if(isset($_SESSION['id'])) {
         {
         ?>
         <div class="link_billet">
-        <a class="img_edit" href="edit.php">
+        <a class="img_edit" href="redaction.php">
             <img  src="img/createbillet.png"  />
         </a>
         <a class="img_edit" href="editbillet.php">
