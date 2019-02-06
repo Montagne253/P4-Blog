@@ -151,7 +151,8 @@ body {
 }
 
 .img_edit {
-	margin-left: 450px;
+	margin-left: 530px;
+	
 }
 
 
@@ -189,11 +190,17 @@ input:-moz-placeholder
 }
 
 .btn_submit_edit {
-	width: 500px;
+	width: 360px;
 	height: 40px;
 	cursor: pointer;
 	font-size: 20px;
 }
+
+.btn_submit_edit:hover {
+	background-color: #3D7A99;
+	color: #fff;
+}
+
 
 .btn_submit_comment {
 	width: 310px;
