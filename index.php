@@ -21,7 +21,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
     <header class="header">
         <div class="header__element">
         <div class="title">
-        <h2 style="text-align: center">JEAN LAROCHE | ÉCRIVAIN.</h2>
+        <h2 style="text-align: center">JEAN FORTEROCHE | ÉCRIVAIN.</h2>
             <p>Bienvenue sur mon blog !</p>
         </div>
             <nav class="navigation">       
@@ -32,9 +32,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
                         <li class="navigation__menu__id--header">
                             <a class="navigation__link" href="billet.php">Billets</a>
                         </li>
-                        <li class="navigation__menu__id--header">
-                            <a class="navigation__link" href="connexion.php">Admin</a>
-                        </li>
+                       
                 </ul>
             </nav>
         </div>
