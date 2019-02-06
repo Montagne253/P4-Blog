@@ -75,7 +75,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
         <br>
         <br>
 
-        <form method="POST" action="edit.php">
+        <form method="POST" action="redaction.php">
             <input type="text" name="auteur" placeholder="auteur"><br> <p><?php if(isset($error_auteur)){ echo '<font color="red">' . $error_auteur . "</font>"; }?></p><br><br>
             <textarea type="text" name="titre" rows="3" cols="110" placeholder="Titre...."></textarea><br><p><?php if(isset($error_titre)){ echo '<font color="red">' . $error_titre . "</font>"; }?></p><br><br><br>
             <textarea class="story" type="text" name="contenu" rows="50" cols="140" placeholder="Mon histoire..."></textarea><br><p><?php if(isset($error_contenu)){ echo '<font color="red">' . $error_contenu . "</font>"; }?></p><br><br><br>
