@@ -42,6 +42,9 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
                     <li class="navigation__menu__id--header">
                         <a class="navigation__link" href="billet.php">Billets</a>
                     </li>
+                    <li class="navigation__menu__id--header">
+                            <a class="navigation__link" href="connexion.php">Admin</a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -79,12 +82,14 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
 <br>
 <br>
 
-<a class="navigation__link__billet" href="index.php">Retour au blog</a>
-
-
 <div id="scrollUp">
 <a class="top" href="#top"><img  class="scrollUp" src="img/to_top.png"/></a>
 </div>
+
+<a class="navigation__link__billet" href="index.php">Retour au blog</a>
+
+
+
 
 <script src="to-top.js"></script>
 </body>
