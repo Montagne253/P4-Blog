@@ -127,34 +127,9 @@ $req->execute(array($_GET['billet']));
         </table>
     </form>
 
-
-
-    
-<!--<form  class="commentUser" action="comment.php
-    <p>
-        <label for="auteur">Auteur</label> : <input type="text" name="auteur" id="auteur" /><br />
-       
-        <label for="commentaire">Commenter</label> :  <input type="text" name="commentaire" id="commentaire" /><br />
-       
-
-        <input class="btn_submit_edit" id="submit" type="submit" value="Envoyer" />
-	</p>
-</form>-->
 <br>
 <br>
 <br>
-
-<?php
-// Affichage de chaque commentaire (toutes les données sont protégées par htmlspecialchars)
- /*  while($donnees = $reponse->fetch())
-    {
-        echo '<p><strong>' . htmlspecialchars($donnees['auteur']) . '</strong> : ' . htmlspecialchars($donnees['commentaire']) . ' ' . '(' . htmlspecialchars($donnees['date_commentaire']) . ')' .  '</p>';
-    }
-
-    $reponse->closeCursor();*/
-
-
-?>
 <a class="navigation__link__1" href="index.php">Retour au blog</a>
 </body>
 </html>
