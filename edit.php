@@ -11,7 +11,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
     
     $edit_billet = $bdd->prepare('SELECT id, auteur, titre, contenu FROM billet WHERE id = ?');
     $edit_billet->execute(array($edit));
-   
+
     if($edit_billet->rowCount() == 1) {
 
         $edit_billet = $edit_billet->fetch();
@@ -22,53 +22,39 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
 
 
 
-    } else {
-        die('Erreur : Le billet n\'existe pas');
-    }
 
-     
+    if(isset($_POST['newauteur'], $_POST['newtitre'], $_POST['newcontenu']))
+    {
+        
+        
+        $newAuteur = htmlspecialchars($_POST['newauteur']);
+        $newTitre = htmlspecialchars($_POST['newtitre']);
+        $newContenu = htmlspecialchars($_POST['newcontenu']);
+       
 
+        $insertnew = $bdd->prepare("UPDATE billet SET auteur = :auteur, titre = :titre, contenu = :contenu, date_modification = NOW() WHERE id = :id");
+        $insertnew->execute(array(
+            'auteur' => $newAuteur,
+            'titre' => $newTitre,
+            'contenu' => $newContenu,
+            'id' => $_GET['billet']
+        ));
 
-    if (!empty($_POST)) {
         
 
-        $validation = true;
 
+       header('Location: billet.php?id='.$_GET['billet']);
+    } 
     
-        if(empty($_POST['auteur'])) {
-            $error_auteur = 'L\' auteur est vide';
-            $validation = false;
 
-        }
-        if(empty($_POST['titre'])) {
-            $error_titre = 'Le titre est vide';
-            $validation = false;
-        }
-        if(empty($_POST['contenu'])) {
-            $error_contenu = 'Le texte est vide';
-            $validation = false;
-        }
-        
-        if($validation==true) {
-            $requpdate = $bdd->prepare('UPDATE billet SET auteur = ?, titre = ?, contenu = ?, date_creation = NOW() WHERE id = ?');
-            
-            $requpdate->execute(array(
-                $edit_billet['auteur'], 
-                $edit_billet['titre'],
-                $edit_billet['contenu']
-            ));
-
-            $error = "Votre billet a bien été modifier ! <a class=\"navigation__menu__link\" href=\"billet.php\">Mes billets</a>";
-            $_SESSION['modifier'] = 'Votre billet à été modifié !';
-           
-            // Redirection du visiteur vers la page des billlets
-            header('Location: editbillet.php?billet=' . $edit_billet['id']);
-        }
     }
+
+
+   
+   
 
 
     
-    }
 
 
 ?>
@@ -97,9 +83,9 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
         <br>
 
         <form method="POST" action="edit.php?billet=<?= $edit_billet['id'] ?>">
-            <input type="text" name="auteur" placeholder="" value="<?= $edit_billet['auteur'] ?>"><br><br><br>
-            <textarea type="text" name="titre" rows="3" cols="110" placeholder=""><?= $edit_billet['titre'] ?></textarea><br><br><br>
-            <textarea class="story" type="text" name="contenu" rows="50" cols="140" placeholder=""><?= $edit_billet['contenu'] ?></textarea><br>
+            <input type="text" name="newauteur" placeholder="" value="<?= $edit_billet['auteur'] ?>"><br><br><br>
+            <textarea type="text" name="newtitre" rows="3" cols="110" placeholder=""><?= $edit_billet['titre'] ?></textarea><br><br><br>
+            <textarea class="story" type="text" name="newcontenu" rows="50" cols="140" placeholder=""><?= $edit_billet['contenu'] ?></textarea><br>
             
             <br><br><br>
             <input  class="btn_submit_edit" type="submit" name="edit" value="Modifier">
@@ -110,7 +96,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
         <br>
     <a class="navigation__link__1" href="editbillet.php">Mes billets</a>
 
-    <a class="navigation__link__1" href="blog.php">Retour au blog</a>
+    <a class="navigation__link__1" href="index.php">Retour au blog</a>
     <a class="navigation__link__1" href="deconnexion.php">Se deconnecter</a>
    
 
@@ -129,3 +115,10 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
     
 </body>
 </html>
+<?php 
+}
+else 
+{
+    header("Location: connexion.php");
+}
+?>
