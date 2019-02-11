@@ -25,14 +25,14 @@ if(isset($_SESSION['id'])) {
     <title>Profil</title>
 </head>
 <body>
-<header >
+<header>
    
 
 <div class="container-fluid">
 
         <div class="pos-f-t">
             <div class="collapse" id="navbarToggleExternalContent">
-            <a class="navbar-brand" href="connexion.php">Admin</a>
+            <a class="navbar-brand" href="index.php">HOME</a>
             </div>
             <nav class="navbar navbar-light bg-light">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +41,7 @@ if(isset($_SESSION['id'])) {
                 <div class="title">
                     <h2 >JEAN FORTEROCHE | ÉCRIVAIN.</h2>
                     <p>Bienvenue sur mon blog !</p>
-</div>
+                </div>
             </nav>
         </div>
 </div>
@@ -66,21 +66,25 @@ if(isset($_SESSION['id'])) {
         
         {
         ?>
-        <div class="link_billet">
-        <a class="img_edit" href="redaction.php">
-            <img  src="img/createbillet.png"  />
-        </a>
-        <a class="img_edit" href="editbillet.php">
-            <img  src="img/editbillet.png"  />
-        </a>
-        </div>
-        <br>
-        <br>
-        <a class="navigation__link__1" href="editerprofil.php">Editer mon profil</a>
+<h6>Atelier</h6>
+<table class="table table-dark">
+  
+  <tbody>
+    <tr>
+      <th scope="row">Éditer</th>
+      <td><a class="btn btn-primary" role="button" href="editbillet.php">Billets</a></td>
+      <td><a class="btn btn-primary" role="button" href="editerprofil.php">Profil</a></td>
+    </tr>
+    <tr>
+      <th scope="row"><img src=""/>Créer un nouveau billet</th>
+      <td><a role="button" href="redaction.php" class="btn btn-primary">Créer</a></td>
+    </tr>
+  </tbody>
+</table>
+
         <br>
         <a class="navigation__link__1" href="index.php">Retour au blog</a>
         <br>
-        
         <a class="navigation__link__1" href="deconnexion.php">Deconnexion</a>
         <?php
         }

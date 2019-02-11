@@ -53,7 +53,7 @@ body {
 }
 
 .navbar-brand:hover {
-	color: #021f2e;
+	color: rgb(34, 120, 190)!important;
 }
 
 
@@ -114,13 +114,20 @@ body {
 	height: 100%;
 	justify-content: center;
 	margin: auto;
-	border-top: 5px solid #081b22;
-
 	line-height: 80px;
-	color: rgb(150, 202, 226);
+	color: rgb(255, 255, 255) !important;
 
 }
 
+
+.navigation__link:hover {
+	
+	border-top: 5px solid #272829;
+
+	line-height: 80px;
+	color: rgb(178, 187, 190) !important;
+
+}
 
 .navigation__link__1 {
 	display: flex;
@@ -150,8 +157,8 @@ body {
 }
 
 .navigation__link__1:hover {
-	border-top: 5px solid #fff;
-	color: #fff;
+	border-top: 5px solid rgb(34, 120, 190) !important;
+	color: rgb(34, 117, 185) !important;
 }
 
 .img_edit {
@@ -198,18 +205,20 @@ input:-moz-placeholder
 	height: 40px;
 	cursor: pointer;
 	font-size: 20px;
+	background-color: rgb(31, 106, 177);
+	color: #FFF;
 }
 
 .btn_submit_edit:hover {
-	background-color: #3D7A99;
-	color: #fff;
+	background-color: rgb(239, 242, 243);
+	color: rgb(26, 24, 24);
 }
 
 
 .btn_submit_comment {
 	width: 310px;
 	height: 30px;
-	background-color: #3D7A99;
+	background-color: rgb(31, 106, 177);;
 	color: #fff;
 	cursor: pointer;
 	font-size: 16px;
@@ -224,7 +233,7 @@ input:-moz-placeholder
 .btn_submit {
 	width: 190px;
 	height: 30px;
-	background-color: #3D7A99;
+	background-color: rgb(31, 106, 177);;
 	color: #fff;
 	cursor: pointer;
 	font-size: 16px;
@@ -233,7 +242,7 @@ input:-moz-placeholder
 
 .btn_submit:hover {
 	background-color: #fff;
-	color: #081b22;
+	color: rgb(31, 106, 177);;
 }
 
 .link_billet {
@@ -274,7 +283,7 @@ h1, h3
 
 h3
 {
-    background-color:rgb(207, 202, 202);
+    background-color:rgb(30, 91, 141);
     color:rgb(36, 32, 32);
     font-size:20px;
 	margin-bottom:0px;
@@ -343,7 +352,7 @@ a
 
 
 #profil {
-	background-color: #d0d7da;
+	background-color: #f8f9fa;
 	color: rgb(39, 36, 36);
 	margin: 14px;
 	padding: 24px;
@@ -368,7 +377,6 @@ a {
 	text-decoration: none;
 	border: none;
 	outline: none;
-	margin-left: 1000px;
 	
 }
 
@@ -387,7 +395,7 @@ section {
 
 h1, h2 {
 	
-	color: #fff;
+	color: rgb(31, 106, 177);
 }
 
 table {
@@ -404,6 +412,26 @@ input {
 
 label {
 	color:rgb(150, 202, 226);
+}
+
+h6 {
+	font-size: 30px !important;
+	text-align: center;
+	background-color: #070606da !important;
+	color: #eef0f1 !important;
+	margin: none !important;
+	margin-bottom: 0 !important;
+}
+
+
+th {
+	padding-right: 0 !important;
+	width: 20% !important;
+}
+
+td {
+	padding-right: 0 !important;
+	width: 40% !important;
 }
 
 
@@ -438,10 +466,22 @@ label {
 
 
 /*====================================
-=            SLIDER FORM            =
+=            BUTTONs FORM            =
 ====================================*/
 
 
+.btn-primary {
+	background-color: #f1f5f6 !important;
+	width: 35% !important;
+
+}
+
+.btn-primary:hover {
+
+	background-color: #272829 !important;
+	color: #eef0f1 !important;
+	
+}
 
 
 
