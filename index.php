@@ -28,6 +28,9 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
                 <div class="collapse" id="navbarToggleExternalContent">
                 <a class="navbar-brand" href="connexion.php">Admin</a>
                 </div>
+                <div class="collapse" id="navbarToggleExternalContent">
+                <a class="navbar-brand" href="billet.php">Mes billets</a>
+                </div>
                 <nav class="navbar navbar-light bg-light">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
