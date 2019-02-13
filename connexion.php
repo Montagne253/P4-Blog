@@ -48,7 +48,7 @@ if(isset($_SESSION['id'])) {
             }
             else 
             {
-                $error = "Mauvais email ou mot de passe incorrect ! <a href=\"blog.php\">Mon blog</a>";
+                $error = "Mauvais email ou mot de passe incorrect !";
             }
         }
         else 
@@ -67,11 +67,12 @@ if(isset($_SESSION['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="projet4.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <title>Connexion</title>
 </head>
 <body>
 
-<div align="center">
+<div id="connexion" align="center">
     <h2>Connexion</h2>
 
     <br> <br>
@@ -79,12 +80,12 @@ if(isset($_SESSION['id'])) {
     <form method="POST" action="connexion.php">
        <input type="pseudo" name="pseudoconnect" placeholder="pseudo">
        <input type="password" name="passwordconnect" id="" placeholder="password">
-       <input class="btn_submit" type="submit" name="submitconnect" value="Connexion">
+       <input class="btn_submit_edit" type="submit" name="submitconnect" value="Connexion">
     </form>
     <br>
     <br>
-    <a class="navigation__link__1" href="index.php">Retour au blog</a>
-    <a class="navigation__link__1" href="signin.php">S'inscrire</a>
+    <a class="btn btn-primary_nav" role="button" href="index.php">Retour au blog</a>
+    <a class="btn btn-primary_nav" role="button" href="signin.php">S'inscrire</a>
 
    
 
@@ -96,6 +97,10 @@ if(isset($_SESSION['id'])) {
     ?>
   
 </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>   
     
 </body>
 </html>
