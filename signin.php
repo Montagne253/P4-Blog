@@ -103,58 +103,52 @@ if (isset($_POST['signin']))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="projet4.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <title>Inscription</title>
 </head>
 <body>
 
-<div align="center">
+<div class="container_signIn" align="center">
     <h2>Inscription</h2>
 
     <br> <br>
+    <form method="POST" action="signin.php">
+        <input type="pseudo" name="pseudo" id="" placeholder="pseudo" value="<?php if(isset($pseudo)) { echo $pseudo; } ?>"><br><br>
+        <input type="email" name="email" id="" placeholder="email" value="<?php if(isset($email)) { echo $email; } ?>"><br><br>
+        <input type="password" name="password" id="" placeholder="password"><br><br>
+        <input type="password" name="confirm_password" id="" placeholder="confirm password"><br><br>
+        <input class="btn_submit_edit" type="submit" name="signin" value="Créer son compte"><br><br>
+    </form>
 
-    <form method="post" action="signin.php">
+   <!-- <form method="post" action="signin.php">
         <table class="signintab">
             <tr>
-                <td align="right">
-                    <label for="pseudo">Pseudo :</label>           
-                </td>
                 <td>
                     <input type="pseudo" name="pseudo" id="" placeholder="pseudo" value="<?php if(isset($pseudo)) { echo $pseudo; } ?>">
                 </td>
             </tr>
             <tr>
-                <td align="right">
-                    <label for="email">Email :</label>           
-                </td>
                 <td>
                     <input type="email" name="email" id="" placeholder="email" value="<?php if(isset($email)) { echo $email; } ?>">
                 </td>
             </tr>
             <tr>
-                <td align="right">
-                    <label for="pasword">Mot de passe :</label>           
-                </td>
                 <td>
                     <input type="password" name="password" id="" placeholder="password">
                 </td>
             </tr>
             <tr>
-                <td align="right">
-                    <label for="confirm_password">Confirmation mot de passe :</label>           
-                </td>
                 <td>
                     <input type="password" name="confirm_password" id="" placeholder="confirm password">
                 </td>
             </tr>
             <tr>
-                <td></td>
-                <td align="center">
-                    
-                    <input class="btn_submit" type="submit" name="signin" value="Créer son compte">
+                <td>
+                    <input class="btn_submit_edit" type="submit" name="signin" value="Créer son compte">
                 </td>
             </tr>
         </table>
-    </form>
+    </form>-->
     <?php 
     if(isset($error))
     {
@@ -171,14 +165,18 @@ if (isset($_POST['signin']))
 <br>
 
 
-<a class="navigation__link__1" href="connexion.php">Se connecter</a>
+<a class="btn btn-primary_nav" href="connexion.php">Se connecter</a>
 <br>
-<a class="navigation__link__1" href="index.php">Retour au blog</a>
+<a class="btn btn-primary_nav" href="index.php">Retour au blog</a>
    
     
-                
+               
   
 </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>   
     
 </body>
 </html>

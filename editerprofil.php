@@ -48,7 +48,7 @@ if(isset($_SESSION['id']))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="projet4.css" rel="stylesheet" />
-    <title>Profil</title>
+    <title>Éditer Profil</title>
 </head>
 <body>
 
@@ -59,7 +59,7 @@ if(isset($_SESSION['id']))
             <input type="email" name="newemail" placeholder="email" value="<?php echo $user['email']; ?>"/><br><br>
             <input type="password" name="newmdp" placeholder="new password"/><br><br>
             <input type="password" name="confirmnewmdp" placeholder="confirm new password" /><br><br>
-            <input class="btn_submit_edit" type="submit"  value="Enregister les changements" /><br><br>
+            <input class="btn_submit_edit" type="submit"  value="Enregistrer" /><br><br>
         </form>
 <?php 
     if(isset($error))
@@ -71,6 +71,8 @@ if(isset($_SESSION['id']))
     <br>
     <br>
     <a class="navigation__link__1" href="index.php">Retour au blog</a>
+
+      
     
 </body>
 </html>
