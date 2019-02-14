@@ -124,12 +124,12 @@ if (isset($_POST['signin']))
         <table class="signintab">
             <tr>
                 <td>
-                    <input type="pseudo" name="pseudo" id="" placeholder="pseudo" value="<?php if(isset($pseudo)) { echo $pseudo; } ?>">
+                    <input type="pseudo" name="pseudo" id="" placeholder="pseudo" value="<?php //if(isset($pseudo)) { echo $pseudo; } ?>">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <input type="email" name="email" id="" placeholder="email" value="<?php if(isset($email)) { echo $email; } ?>">
+                    <input type="email" name="email" id="" placeholder="email" value="<?php //if(isset($email)) { echo $email; } ?>">
                 </td>
             </tr>
             <tr>
@@ -161,14 +161,16 @@ if (isset($_POST['signin']))
 <br>
 <br>
 <br>
-<p>Déjà un compte ?</p>
+<p style="color: #2451b9; font-weight: bold;">Déjà un compte ?</p>
 <br>
 
+<div class="btn_signin">
+<a class="btn btn-primary_nav_edit" href="connexion.php">Se connecter</a>
 
-<a class="btn btn-primary_nav" href="connexion.php">Se connecter</a>
+<div>
 <br>
-<a class="btn btn-primary_nav" href="index.php">Retour au blog</a>
-   
+<br>
+<a class="btn btn-primary" href="index.php">Retour au blog</a>
     
                
   
