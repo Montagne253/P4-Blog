@@ -35,34 +35,30 @@ $req->execute(array($_GET['billet']));
     
 </head>
 <body>
-<header class="header">
-        <div class="header__element">
-        <div class="title">
-        <h4 style="text-align: center">Mes billets</h4>
-            
-        </div>
-            <nav class="navigation">       
-                <ul class="navigation__menu--header">
-                    <li class="navigation__menu__id--header">
-                        <a class="navigation__link" href="index.php">Accueil</a>
-                    </li>
-                    <li class="navigation__menu__id--header">
-                        <a class="navigation__link" href="billet.php">Billets</a>
-                    </li>
-                    <li class="navigation__menu__id--header">
-                            <a class="navigation__link" href="connexion.php">Admin</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+<header >
+    <div class="container-fluid">
+
+            <div class="pos-f-t">
+                <div class="collapse" id="navbarToggleExternalContent">
+                <a class="navbar-brand" href="billet.php">Mes billets</a>
+                </div>
+                <div class="collapse" id="navbarToggleExternalContent">
+                <a class="navbar-brand" href="index.php">HOME</a>
+                </div>
+                <nav class="navbar navbar-light bg-light">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="title">
+                        <h1 >JEAN FORTEROCHE | ÉCRIVAIN.</h1>
+                        <p>Bienvenue sur mon blog !</p>
+                    </div>
+                </nav>
+            </div>
+    </div>
+                
 </header>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
 <div class="news">
     <h3>
                  
