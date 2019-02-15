@@ -6,7 +6,7 @@
 body {
 	margin: 0;
 	font-family: 'Roboto Condensed', sans-serif;
-	background-color: #eef0f1;
+	background-color: #f1f1f1;
 	color: #fff;
 }
 
@@ -44,14 +44,13 @@ body {
 	align-items: center;
 }
 
-.title {
-	display: block;
+.header_tab {
+	color: #376ff1;
 	margin-top: 25px;
 	margin-bottom: 25px;
-	margin-left: 40px;
-	color: rgb(27, 26, 26);
+	margin-left: 100px;
+	
 }
-
 
 
 
@@ -134,8 +133,8 @@ h5 {
 	margin-top: 5px;
 	font-size: 18px;
 	text-align: center;
-
 }
+
 
 .news p
 {
@@ -146,11 +145,7 @@ h5 {
 	padding: 10px;
 	text-align: center;
 }
-.news
-{
-    width:70%;
-    margin:auto;
-}
+
 
 a
 {
@@ -168,6 +163,10 @@ a
 	
 }
 
+#profil p {
+	font-size: 20px;
+}
+
 ul {
 	margin: 0px;
 	padding: 0px;
@@ -181,7 +180,7 @@ li {
 a {
 	display: block;
 	font-size: 16px;
-	color: rgb(87, 92, 93) !important;
+	color: #2451b9 !important;
 	text-decoration: none;
 	border: none;
 	outline: none;
@@ -204,22 +203,27 @@ section {
 h1, h2 {
 	
 	color: rgb(31, 106, 177);
+	
 }
 
-table {
-	margin-right: 150px;
+h2 { 
+	
+	color: rgb(31, 106, 177) !important; 
 }
+
+
 
 input {
-	font-size: 16px;
-	width: 250px;
-	height: 30px;
-	margin: auto;
-	padding: 5px;
+	font-size: 16px!important;
+	width: 320px;
+	height: 40px;
+	margin: 10px !important;
+	padding: 5px !important;
+	justify-content: space-around; 
 }
 
 label {
-	color:rgb(150, 202, 226);
+	color:#2451b9;
 }
 
 h6 {
@@ -229,17 +233,28 @@ h6 {
 	color: #eef0f1 !important;
 	margin: none !important;
 	margin-bottom: 0 !important;
+	padding: 15px !important;
 }
 
 
 th {
 	padding-right: 0 !important;
 	width: 20% !important;
+	padding: 30px !important;
+	padding-left: 290px !important;
+	border-right: solid #081b22 !important;
+	border-top: 1px solid #37393f !important;
+	border-bottom: 1px solid #37393f !important;
+
 }
 
 td {
 	padding-right: 0 !important;
-	width: 40% !important;
+	width: 20% !important;
+	padding: 30px !important;
+	
+	border-top: 1px solid #37393f !important;
+	border-bottom: 1px solid #37393f !important;
 }
 
 
@@ -277,10 +292,19 @@ td {
 =   BUTTONS FORM | NAVIGATION FORM   =
 ====================================*/
 
+.nav__exit {
+	margin-top: 70px;
+	margin-bottom: 10px;
+	width: 20%;
+	margin-left: 40%;
+}
 
 .btn-primary {
 	background-color: #f1f5f6 !important;
 	width: 35% !important;
+	border: 1px solid #272829 !important;
+	color: #000 !important;
+	font-weight: bold !important;
 
 }
 
@@ -291,23 +315,73 @@ td {
 	
 }
 
+.btn_modif {
+	margin-right: 40px !important;
+}
+
+
+
 .btn-primary_nav {
-	background-color: #2451b9 !important;
-	width: 15% !important;
+	background-color: #838588 !important;
+	width: 100% !important;
 	height: 8% !important;
 	color: #eef0f1 !important;
 	margin: 10px;
-	margin-left: 40%;
+	margin-right: 10px !important;
+	
 
 }
 
 .btn-primary_nav:hover {
 
-	background-color: #272829 !important;
+	background-color: #2451b9 !important;
 	color: #eef0f1 !important;
 	
 }
 
+.btn-primary_nav_2 {
+	background-color: #272829!important; 
+	width: 100% !important;
+	height: 8% !important;
+	color: #eef0f1 !important;
+	margin: 10px;
+	margin-right: 10px !important;
+}
+.btn-primary_nav_2:hover {
+
+	background-color: #2451b9 !important;
+	color: #eef0f1 !important;
+	
+}
+
+.btn-primary_nav_edit {
+	background-color: #838588 !important;
+	width: 20% !important;
+	height: 5% !important;
+	color: #eef0f1 !important;
+	margin: 10px;
+	
+	
+}
+
+.btn_edit {
+	margin-left: 26%;
+}
+
+.btn_connexion {
+	margin-left: 0;
+}
+
+.btn_edit_profil {
+	margin-left: 775px;
+}
+
+
+.btn-primary_nav_edit:hover {
+
+	background-color: #2451b9 !important;
+	color: #eef0f1 !important;
+}
 .navbar-brand:hover {
 	color: rgb(34, 120, 190)!important;
 }
@@ -436,17 +510,20 @@ td {
 
 .button_submit {
 	cursor: pointer;
+	
 
 }
 
 
 .btn_submit_edit {
-	width: 360px;
+	width: 180px;
 	height: 40px;
 	cursor: pointer;
 	font-size: 20px;
 	background-color: rgb(31, 106, 177);
 	color: #FFF;
+	margin-top: 20px;
+	margin-left: 20px !important;
 }
 
 .btn_submit_edit:hover {
@@ -492,6 +569,7 @@ td {
 
 .story {
 	text-align: justify;
+	padding: 50px;
 }
 
 #scrollUp
@@ -507,6 +585,10 @@ opacity: 0.5;
 	
 }
 
+.title {
+	color: #081b22 !important;
+}
+
 
 
 
@@ -514,7 +596,9 @@ opacity: 0.5;
 =         Acceuil FORM           =
 ====================================*/
 
-
+.creer th {
+	padding-left: 150px !important;
+}
 
 
 
@@ -525,7 +609,10 @@ opacity: 0.5;
 ====================================*/
 
 
+.auteur th {
+	width: 10%;
 
+}
 
 
 
@@ -538,7 +625,9 @@ opacity: 0.5;
 =            Admin FORM            =
 ====================================*/
 
-
+#connexion {
+	margin-top: 150px;
+}
 
 
 
@@ -547,6 +636,14 @@ opacity: 0.5;
 /*==================================
 =                     =
 ==================================*/
+ .signintab {
+	 
+ }
+
+ .container_signIn {
+	background-color: #2447b110;
+	padding: 40px;
+ }
 
 
 
