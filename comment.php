@@ -1,5 +1,6 @@
 <?php
 // Connexion à la base de données
+session_start();
     try
     {
         $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo932018');
@@ -8,6 +9,8 @@
     {
             die('Erreur : '.$e->getMessage());
     }
+
+    
 
         // Récupération du billet
 $req = $bdd->prepare('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation_fr FROM billet WHERE id = ?');
@@ -44,11 +47,38 @@ $req->execute(array($_GET['billet']));
                 "commentaire" => $_POST['commentaire']
             ));
             
+
+            $_SESSION['flash'] = "Votre commentaire a bien été posté !";
+            
+            
             // Redirection du visiteur vers la page du commentaire
             header('Location: comment.php?billet=' . $_GET['billet']);
+            exit();
 
         }
     }
+?>
+<?php
+
+ 
+
+function truncate($string, $max_length = 30, $replacement = '', $trunc_at_space = false)
+
+{
+
+    $max_length -= strlen($replacement);
+
+    $string_length = strlen($string);
+
+    if($string_length <= $max_length)
+
+    return $string;
+
+    if( $trunc_at_space && ($space_position = strrpos($string, ' ', $max_length-$string_length)) )
+
+    $max_length = $space_position;
+    return substr_replace($string, $replacement, $max_length);
+}
 ?>
 
 
@@ -58,13 +88,50 @@ $req->execute(array($_GET['billet']));
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="projet4.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet" />
     <title>Commentaires</title>
 </head>
+
     
 <body>
 
+<header>
+    <div class="container-fluid">
 
+            <div class="pos-f-t">
+                <div class="collapse" id="navbarToggleExternalContent">
+                <a class="navbar-brand" href="connexion.php">Admin</a>
+                </div>
+                <div class="collapse" id="navbarToggleExternalContent">
+                <a class="navbar-brand" href="billet.php">Mes billets</a>
+                </div>
+                <nav class="navbar navbar-light bg-light">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="title">
+                        <h2 >JEAN FORTEROCHE | ÉCRIVAIN.</h2>
+                        <p>Bienvenue sur mon blog !</p>
+                    </div>
+                </nav>
+            </div>
+    </div>
+                
+</header>
+
+<?php  if(isset($_SESSION['flash'])) { 
+    $flash = $_SESSION['flash'];
+    
+    ?>
+    <div class="alert alert-success" role="alert">
+        <?= $flash ?>
+    </div>
+<?php   
+
+} 
+unset($_SESSION['flash']);
+?>
 
 <div class="news">
     <h3>
@@ -74,9 +141,17 @@ $req->execute(array($_GET['billet']));
     
     <p>
     <?php
-    echo nl2br(htmlspecialchars($donnees['contenu']));
-    ?>
+ 
+ $str = $donnees['contenu'];
+ $str = truncate($str, 50, '...', true);
+ echo $str    ;
+ // Suspendisse at magna non lectus...
+             // On affiche le contenu du billet
+         // echo nl2br(htmlspecialchars($donnees['contenu']));
+ ?>
+ <a class="btn btn-primary_nav_edit" href="billetById.php?billet=<?php echo $donnees['id']; ?>">Lire la suite</a>
     </p>
+    
 </div>
 <div class="comment">
 <h4>Commentaires</h4>
@@ -121,7 +196,7 @@ $req->execute(array($_GET['billet']));
                 </td>
                 <br>
                 <td>
-                <input class="btn_submit_comment" type="submit" value="Envoyer" />
+                <input class="btn btn-primary" type="submit" value="Envoyer" />
                 </td>
             </tr>
         </table>
@@ -135,10 +210,19 @@ $req->execute(array($_GET['billet']));
 <br>
 <br>
 
-<?php
 
+<footer>
+<div id="scrollUp">
+<a class="top" href="#top"><img  class="scrollUp" src="img/to_top.png"/></a>
+</div>
+<div class="nav__exit">
+<a class="btn btn-primary_nav" role="button" href="index.php">Retour au blog</a>
+</div>
 
-?>
-<a class="navigation__link__1" href="index.php">Retour au blog</a>
+</footer>
+<script src="to-top.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 </body>
 </html>
