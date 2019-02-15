@@ -27,7 +27,7 @@ if(isset($_SESSION['id'])) {
             if($userexist == 1) 
             {
                 
-                var_dump($userexist);
+               
                 $userinfo = $requser->fetch();
                 
                 if((password_verify($passwordconnect, $userinfo['pass'])))
@@ -84,9 +84,10 @@ if(isset($_SESSION['id'])) {
     </form>
     <br>
     <br>
-    <a class="btn btn-primary_nav" role="button" href="index.php">Retour au blog</a>
-    <a class="btn btn-primary_nav" role="button" href="signin.php">S'inscrire</a>
-
+    <div class="btn_connexion">
+        <a class="btn btn-primary_nav_edit" role="button" href="index.php">Retour au blog</a>
+        <a class="btn btn-primary_nav_edit" role="button" href="signin.php">S'inscrire</a>
+    </div>
    
 
     <?php 

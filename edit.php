@@ -43,7 +43,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
         
 
 
-       header('Location: billet.php?id='.$_GET['billet']);
+       header('Location: editbillet.php?id='.$_GET['billet']);
     } 
     
 
@@ -65,6 +65,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="projet4.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <title>Modifier votre billet</title>
 </head>
 <body>
@@ -84,7 +85,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
 
         <form method="POST" action="edit.php?billet=<?= $edit_billet['id'] ?>">
             <input type="text" name="newauteur" placeholder="" value="<?= $edit_billet['auteur'] ?>"><br><br><br>
-            <textarea type="text" name="newtitre" rows="3" cols="110" placeholder=""><?= $edit_billet['titre'] ?></textarea><br><br><br>
+            <textarea class="story" type="text" name="newtitre" rows="3" cols="110" placeholder=""><?= $edit_billet['titre'] ?></textarea><br><br><br>
             <textarea class="story" type="text" name="newcontenu" rows="50" cols="140" placeholder=""><?= $edit_billet['contenu'] ?></textarea><br>
             
             <br><br><br>
@@ -94,11 +95,11 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
 </div>
         <br>
         <br>
-    <a class="navigation__link__1" href="editbillet.php">Mes billets</a>
-
-    <a class="navigation__link__1" href="index.php">Retour au blog</a>
-    <a class="navigation__link__1" href="deconnexion.php">Se deconnecter</a>
-   
+    <div class="btn_edit">
+    <a class="btn btn-primary_nav_edit" href="editbillet.php">Mes billets</a>
+    <a class="btn btn-primary_nav_edit" href="profil.php?id=<?$_SESSION['id']?>">Admin</a>
+    <a class="btn btn-primary_nav_edit" href="deconnexion.php">Se deconnecter</a>
+    </div>
 
     
 
@@ -112,7 +113,9 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
     
 
 
-    
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> 
 </body>
 </html>
 <?php 

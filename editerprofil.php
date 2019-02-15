@@ -48,6 +48,7 @@ if(isset($_SESSION['id']))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="projet4.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <title>Éditer Profil</title>
 </head>
 <body>
@@ -70,7 +71,9 @@ if(isset($_SESSION['id']))
     </div>
     <br>
     <br>
-    <a class="navigation__link__1" href="index.php">Retour au blog</a>
+    <div class="btn_edit_profil">
+    <a class="btn btn-primary_nav_edit" href="connexion.php">Retour profil</a>
+    </div>
 
       
     
