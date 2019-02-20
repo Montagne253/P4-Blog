@@ -67,9 +67,10 @@ if (isset($_POST['signin']))
                                 $email,
                                 $hash_password,
                                 ));
-                            $error = "Votre compte a bien été créé !";
-                            $_SESSION['comptecree'] = 'Votre compe à été créé !';
-                            header('Location: connexion.php');
+                            
+                            
+                            $_SESSION['flash'] = "Votre compe à été créé !";
+                            //header('Location: connexion.php');
                         
                             
                             //header('Location: signin.php');
@@ -120,41 +121,21 @@ if (isset($_POST['signin']))
         <input class="btn_submit_edit" type="submit" name="signin" value="Créer son compte"><br><br>
     </form>
 
-   <!-- <form method="post" action="signin.php">
-        <table class="signintab">
-            <tr>
-                <td>
-                    <input type="pseudo" name="pseudo" id="" placeholder="pseudo" value="<?php //if(isset($pseudo)) { echo $pseudo; } ?>">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="email" name="email" id="" placeholder="email" value="<?php //if(isset($email)) { echo $email; } ?>">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="password" name="password" id="" placeholder="password">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="password" name="confirm_password" id="" placeholder="confirm password">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input class="btn_submit_edit" type="submit" name="signin" value="Créer son compte">
-                </td>
-            </tr>
-        </table>
-    </form>-->
-    <?php 
-    if(isset($error))
-    {
-        echo '<font color="red">' . $error . "</font>";
-    }
+    </header>
+
+<?php  if(isset($_SESSION['flash'])) { 
+    $flash = $_SESSION['flash'];
+    
     ?>
+    <div class="alert alert-success" role="alert">
+        <?= $flash ?>
+    </div>
+<?php   
+
+} 
+unset($_SESSION['flash']);
+?>
+
 <br>
 <br>
 <br>

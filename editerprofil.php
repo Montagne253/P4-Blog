@@ -30,8 +30,11 @@ if(isset($_SESSION['id']))
             $_SESSION['id']
         ));
 
+        $_SESSION['flash'] = "Votre profil a bien été modifié !";
+
 
         header('Location: profil.php?id='.$_SESSION['id']);
+        exit();
     } 
     
     
@@ -62,11 +65,18 @@ if(isset($_SESSION['id']))
             <input type="password" name="confirmnewmdp" placeholder="confirm new password" /><br><br>
             <input class="btn_submit_edit" type="submit"  value="Enregistrer" /><br><br>
         </form>
-<?php 
-    if(isset($error))
-    {
-        echo '<font color="red">' . $error . "</font>";
-    }
+
+<?php  if(isset($_SESSION['flash'])) { 
+    $flash = $_SESSION['flash'];
+    
+?>
+    <div class="alert alert-success" role="alert">
+        <?= $flash ?>
+    </div>
+<?php   
+
+} 
+unset($_SESSION['flash']);
 ?>
     </div>
     <br>

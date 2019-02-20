@@ -32,11 +32,10 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
                 $_POST['titre'],
                 $_POST['contenu']
             ));
-            $error = "Votre billet a bien été créé ! <a class=\"navigation__menu__link\" href=\"billet.php\">Mes billets</a>";
-            $_SESSION['billet'] = 'Votre billet à été créé !';
+            $_SESSION['flash'] = "Votre billet à bien été créé !";
            
             // Redirection du visiteur vers la page des billlets
-            header('Location: billet.php');
+            //header('Location: billet.php');
         }
     }
 
@@ -55,6 +54,18 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
     <title>Créer un nouveau billet</title>
 </head>
 <body>
+<?php  if(isset($_SESSION['flash'])) { 
+    $flash = $_SESSION['flash'];
+    
+?>
+    <div class="alert alert-success" role="alert">
+        <?= $flash ?>
+    </div>
+<?php   
+
+} 
+unset($_SESSION['flash']);
+?>
     <div align="center">
         <h2>Créer un nouveau billet</h2>
         <br>
@@ -89,15 +100,21 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
 
     
 
-        <?php 
-        if(isset($error))
-        {
-            echo '<font color="red">' . $error . "</font>";
-        }
-        ?>
+<?php  if(isset($_SESSION['flash'])) { 
+    $flash = $_SESSION['flash'];
+    
+?>
+    <div class="alert alert-success" role="alert">
+        <?= $flash ?>
+    </div>
+<?php   
+
+} 
+unset($_SESSION['flash']);
+?>
     
     
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> 
 
