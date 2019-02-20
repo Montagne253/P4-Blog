@@ -88,14 +88,7 @@ h1, h3
     text-align:center;
 }
 
-h3
-{
-    background-color:rgb(30, 91, 141);
-    color:rgb(36, 32, 32);
-    font-size:20px;
-	margin-bottom:0px;
-	
-}
+
 
 h4 {
 	font-size: 18px;
@@ -124,14 +117,19 @@ h5 {
 	text-align: center;
 	margin-top: 60px;
 	font-size: 20px;
+	margin-left: 25px;
+	text-align: left !important;
+	color: #2451b9;
 	
 	
 }
 
 .comment p {
-	color: rgb(29, 27, 27);
-	margin-top: 5px;
+	color: #000;
+	margin-top: 10px;
 	font-size: 18px;
+	margin-left: 25px;
+	text-align: left !important;
 	text-align: center;
 }
 
@@ -229,7 +227,7 @@ label {
 h6 {
 	font-size: 30px !important;
 	text-align: center;
-	background-color: #070606da !important;
+	background-color: #2451b9 !important;
 	color: #eef0f1 !important;
 	margin: none !important;
 	margin-bottom: 0 !important;
@@ -242,7 +240,7 @@ th {
 	width: 20% !important;
 	padding: 30px !important;
 	padding-left: 290px !important;
-	border-right: solid #081b22 !important;
+	
 	border-top: 1px solid #37393f !important;
 	border-bottom: 1px solid #37393f !important;
 
@@ -253,8 +251,8 @@ td {
 	width: 20% !important;
 	padding: 30px !important;
 	
-	border-top: 1px solid #37393f !important;
-	border-bottom: 1px solid #37393f !important;
+	/*border-top: 1px solid #37393f !important;
+	border-bottom: 1px solid #37393f !important;*/
 }
 
 
@@ -308,9 +306,29 @@ td {
 
 }
 
+
+
 .btn-primary:hover {
 
-	background-color: #272829 !important;
+	background-color: #2451b9 !important;
+	color: #eef0f1 !important;
+	
+}
+
+
+.btn-primary_edit {
+	background-color: #f1f5f6 !important;
+	width: 35% !important;
+	margin-left: 150px !important;
+	border: 1px solid #272829 !important;
+	color: #000 !important;
+	font-weight: bold !important;
+
+}
+
+.btn-primary_edit:hover {
+
+	background-color: #2451b9 !important;
 	color: #eef0f1 !important;
 	
 }
@@ -362,6 +380,22 @@ td {
 	margin: 10px;
 	
 	
+}
+
+.btn-primary_nav_edit_small {
+	background-color: #838588 !important;
+	width: 70px !important;
+	height: 35px !important;
+	color: #eef0f1 !important;
+	margin: 18px !important;
+	float: right !important;
+	font-size: 12px !important;
+}
+
+.btn-primary_nav_edit_small:hover {
+
+	background-color: #b92424 !important;
+	color: #eef0f1 !important;
 }
 
 .btn_edit {
