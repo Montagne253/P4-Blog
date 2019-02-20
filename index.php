@@ -36,7 +36,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
                     <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="title">
-                        <h2 >JEAN FORTEROCHE | ÉCRIVAIN.</h2>
+                        <h1>JEAN FORTEROCHE | ÉCRIVAIN.</h1>
                         <p>Bienvenue sur mon blog !</p>
                     </div>
                 </nav>
@@ -45,11 +45,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
                 
 </header>
     <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
+<h3>Les derniers billets</h3>
     <!--Bllog/Billets  -->
     <section class="billet" id="billet">
 
