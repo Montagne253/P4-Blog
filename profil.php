@@ -69,17 +69,22 @@ if(isset($_SESSION['id'])) {
 
 </div>
 <h6>ATELIER</h6>
-<table class="table table-light">
+<table class="table table-dark">
   <tbody>
     <tr>
-      <th class="creer" scope="row">Créer</th>
-      <td><a role="button" href="redaction.php" class="btn btn-primary">Billets</a></td>
+      <th class="creer" scope="row">CRÉER</th>
+      <td><a role="button" href="redaction.php" class="btn btn-primary_edit">Billets</a></td>
       <td><a role="button" href="signin.php" class="btn btn-primary">Nouveau compte</a></td>
     </tr>
     <tr>
-      <th class="editer" scope="row">Éditer</th>
-      <td><a class="btn btn-primary" role="button" href="editbillet.php">Billets</a></td>
+      <th class="editer" scope="row">ÉDITER</th>
+      <td><a class="btn btn-primary_edit" role="button" href="editbillet.php">Billets</a></td>
       <td><a class="btn btn-primary" role="button" href="editerprofil.php">Mon profil</a></td>
+      
+    </tr>
+    <tr>
+      <th class="creer" scope="row">MODÉRER</th>
+      <td><a role="button" href="editComment.php" class="btn btn-primary_edit">Commentaires</a></td>
     </tr>
   </tbody>
 </table>
