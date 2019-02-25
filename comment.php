@@ -17,6 +17,8 @@ $req = $bdd->prepare('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d
 $req->execute(array($_GET['billet']));
 $donnees = $req->fetch();
 
+$resumeComment = substr($donnees['contenu'], 0, 55);
+
 $req->closeCursor(); // Important : on libère le curseur pour la prochaine requête
 
 // Récupération des commentaires
@@ -57,29 +59,21 @@ $req->execute(array($_GET['billet']));
 
         }
     }
+
+      /*//fonction "signaler" commentaires   | pas au point   
+
+$signal = $bdd->prepare('UPDATE comment SET signaler = ? + 1 WHERE id = ?');
+$signal->execute(array( 
+$_POST['signaler']
+   ));*/
+
+   
 ?>
-<?php
 
- 
 
-function truncate($string, $max_length = 30, $replacement = '', $trunc_at_space = false)
 
-{
 
-    $max_length -= strlen($replacement);
 
-    $string_length = strlen($string);
-
-    if($string_length <= $max_length)
-
-    return $string;
-
-    if( $trunc_at_space && ($space_position = strrpos($string, ' ', $max_length-$string_length)) )
-
-    $max_length = $space_position;
-    return substr_replace($string, $replacement, $max_length);
-}
-?>
 
 
 <!DOCTYPE html>
@@ -139,42 +133,49 @@ unset($_SESSION['flash']);
         <em>le <?php echo $donnees['date_creation_fr']; ?></em>
     </h3>
     
-    <p>
-    <?php
+    <p><?php echo $resumeComment; ?></p>
+    <a class="btn btn-primary_nav_edit" href="billetById.php?billet=<?php echo $donnees['id']; ?>">Lire la suite</a>
  
- $str = $donnees['contenu'];
- $str = truncate($str, 50, '...', true);
- echo $str    ;
- // Suspendisse at magna non lectus...
-             // On affiche le contenu du billet
-         // echo nl2br(htmlspecialchars($donnees['contenu']));
- ?>
- <a class="btn btn-primary_nav_edit" href="billetById.php?billet=<?php echo $donnees['id']; ?>">Lire la suite</a>
-    </p>
-    
 </div>
+
 <div class="comment">
 <h4>Commentaires</h4>
 
-<?php
+<table class="table table-hover table-dark">
+<thead>
+<tr class="header_tab">
+        <td scope="col" class="titre">Auteur</td>
+        <td scope="col" class="auteur">Commentaire</td> 
+</tr>
+</thead>
+  <tbody>
 
-    while ($donnees = $req->fetch())
-    {
-    ?>
-        
-        <h5><strong><?php echo htmlspecialchars($donnees['auteur']); ?></strong> le <?php echo $donnees['date_commentaire_fr']; ?></h5>
-        <p><?php echo nl2br(htmlspecialchars($donnees['commentaire'])); ?></p>
-    <?php
+<?php while ($donnees = $req->fetch()) { ?>
+
+    <tr class="btn_modif">
+       
+        <td><strong><?php echo htmlspecialchars($donnees['auteur']); ?></strong> le <?php echo $donnees['date_commentaire_fr']; ?></td>
+        <td><?php echo nl2br(htmlspecialchars($donnees['commentaire'])); ?></td>
+        <td>
+        <a class="btn btn-primary_nav_edit_small" name="signaler">Signaler</a>
+        </td>     
+    </tr>
+   
+       
+<?php
     } // Fin de la boucle des commentaires
     $req->closeCursor();
+    
 ?>
+    </tbody>
+</div>
 
 
 
 <form method="post" action="comment.php?billet=<?php echo $_GET['billet'] ?>" method="post">
         <table class="commentTab">
             <tr>
-                <td align="right">
+                <td >
                 <label for="auteur">Auteur</label> :        
                 </td>
                 <td>
@@ -183,7 +184,7 @@ unset($_SESSION['flash']);
                 </td>
             </tr>
             <tr>
-                <td align="right">
+                <td>
                 <label for="commentaire">Commenter</label> :            
                 </td>
                 <td>
