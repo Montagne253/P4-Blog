@@ -2,6 +2,14 @@
 session_start();
 
 
+require "model/BilletManager.php";
+require "model/Billet.php";
+
+$billetManager = new BilletManager;
+$billet = $billetManager->get($_GET['billet']);
+
+
+
 $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo932018');
 
     if(isset($_GET['billet']) AND !empty($_GET['billet'])) {
@@ -25,20 +33,31 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
 
     if(isset($_POST['newauteur'], $_POST['newtitre'], $_POST['newcontenu']))
     {
-        
+
+
         
         $newAuteur = htmlspecialchars($_POST['newauteur']);
         $newTitre = htmlspecialchars($_POST['newtitre']);
         $newContenu = htmlspecialchars($_POST['newcontenu']);
-       
 
-        $insertnew = $bdd->prepare("UPDATE billet SET auteur = :auteur, titre = :titre, contenu = :contenu, date_modification = NOW() WHERE id = :id");
-        $insertnew->execute(array(
+       
+        $paul = new Billet(array(
             'auteur' => $newAuteur,
             'titre' => $newTitre,
             'contenu' => $newContenu,
             'id' => $_GET['billet']
         ));
+        $pierre = new BilletManager();
+        $pierre->update($paul);
+
+       
+      /*  $insertnew = $bdd->prepare("UPDATE billet SET auteur = :auteur, titre = :titre, contenu = :contenu, date_modification = NOW() WHERE id = :id");
+        $insertnew->execute(array(
+            'auteur' => $newAuteur,
+            'titre' => $newTitre,
+            'contenu' => $newContenu,
+            'id' => $_GET['billet']
+        ));*/
 
         
 
@@ -48,13 +67,6 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
     
 
     }
-
-
-   
-   
-
-
-    
 
 
 ?>

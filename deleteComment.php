@@ -1,28 +1,35 @@
-<?php
-// Connexion à la base de données
-    try
-    {
-        $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo932018');
-    }
-    catch(Exception $e)
-    {
-            die('Erreur : '.$e->getMessage());
-    }
-
-        // Récupération du billet
-$req = $bdd->prepare('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation_fr FROM billet WHERE id = ?');
-$req->execute(array($_GET['billet']));
-$donnees = $req->fetch();
-
-$req->closeCursor(); // Important : on libère le curseur pour la prochaine requête
-
-// Récupération des commentaires
-$req = $bdd->prepare('SELECT auteur, commentaire, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%imin%ss\') AS date_commentaire_fr FROM comment WHERE id_billet = ? ORDER BY date_commentaire');
-$req->execute(array($_GET['billet']));
+<?php 
+session_start();
 
 
-  
+require "model/BilletManager.php";
+require "model/Billet.php";
+
+require "model/CommentManager.php";
+require "model/Comment.php";
+
+$billetManager = new BilletManager;
+$billet = $billetManager->get($_GET['billet']);
+
+$commentManager = new CommentManager;
+$comments = $commentManager->getList($_GET['billet']);
+
+
+
+if (isset($_POST['delete'])) {
+
+    $commentManager = new CommentManager;
+    $comment = $commentManager->delete($_POST['idComment']);
+   
+
+    
+    header('Location: deleteComment.php?billet='.$_GET['billet']);
+    exit();
+   
+}
+ 
 ?>
+
 
 
 <!DOCTYPE html>
@@ -31,79 +38,99 @@ $req->execute(array($_GET['billet']));
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="projet4.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet" />
     <title>Commentaires</title>
 </head>
     
 <body>
-<header class="header">
-        <div class="header__element">
-        <div class="title">
-        <h2 style="text-align: center">Mes billets</h2>
-            
-        </div>
-            <nav class="navigation">       
-                <ul class="navigation__menu--header">
-                    <li class="navigation__menu__id--header">
-                        <a class="navigation__link" href="editbillet.php">Éditer billets</a>
-                    </li>
-                    <li class="navigation__menu__id--header">
-                        <a class="navigation__link" href="billet.php">Billets</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+<header >
+    <div class="container-fluid">
+
+            <div class="pos-f-t">
+                <div class="collapse" id="navbarToggleExternalContent">
+                <a class="navbar-brand" href="connexion.php">Admin</a>
+                </div>
+                <div class="collapse" id="navbarToggleExternalContent">
+                <a class="navbar-brand" href="index.php">HOME</a>
+                </div>
+                <nav class="navbar navbar-light bg-light">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="title">
+                        <h1 >JEAN FORTEROCHE | ÉCRIVAIN.</h1>
+                        <p>Bienvenue sur mon blog !</p>
+                    </div>
+                </nav>
+            </div>
+    </div>
+                
 </header>
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
 <br>
 <div class="news">
     <h3>
-        <?php echo htmlspecialchars($donnees['titre']); ?>
-        <em>le <?php echo $donnees['date_creation_fr']; ?></em>
+        <?php echo htmlspecialchars($billet->titre()); ?>
+        <br />
+        <div class="date">le <?= $billet->dateModification(); ?></div>
     </h3>
-    
     <p>
-    <?php
-
-     //mettre une variable pour afficher q'une partie du texte 
-    echo nl2br(htmlspecialchars($donnees['contenu']));
+    <?php      // On affiche le contenu du billet
+         echo nl2br(htmlspecialchars($billet->contenu())); 
     ?>
     </p>
+   
+    <a class="btn btn-primary_nav_edit" href="billet.php?billet=<?php echo $billet->id(); ?>">Lire la suite</a>
+ 
+</div>
+
+
+    
 </div>
 <div class="comment">
 <h4>Commentaires</h4>
+<div class="container-fluid">
 
-<?php
 
-    while ($donnees = $req->fetch())
-    {
-    ?>
-        
-        <h5><strong><?php echo htmlspecialchars($donnees['auteur']); ?></strong> le <?php echo $donnees['date_commentaire_fr']; ?></h5>
-        <p><?php echo nl2br(htmlspecialchars($donnees['commentaire'])); ?></p>
-        
-        <em><a href="editbillet.php?billet=<?php echo $_GET['billet'] ?>">Supprimmer</a></em>
-    <?php
+<table class="table table-hover table-dark">
+<thead>
+<tr class="header_tab">
+        <td scope="col" class="auteur">Auteur</td>
+        <td scope="col" class="date">Commentaire</td>
+        <td scope="col" class="date">Signalement</td>
+        <td scope="col" class="supp">Suppression</td>
+</tr>
+</thead>
+  <tbody>
     
-    } // Fin de la boucle des commentaires
-    $req->closeCursor();
-?>
+
+<?php foreach ($comments as $comment) { ?>
+    <tr class="btn_modif">
+    
+    <td><strong><?php echo htmlspecialchars($comment->auteur()); ?></strong> le <?php echo $comment->dateCommentaire(); ?></td>
+    <td><?php echo htmlspecialchars($comment->commentaire()) ?></td>
+    <td><?php echo htmlspecialchars($comment->signaler()) ?></td>
+    <td>
+        
+        <form action="deleteComment.php?billet=<?= $_GET['billet'] ?>" method="post">
+            <input type="hidden" value="<?= $comment->id(); ?>" name="idComment">
+            <input class="btn btn-primary_delete" name="delete" type="submit" value="Supprimer">
+        </form>
+        
+    </td>
+    </tr>
+  
+    <?php } // Fin de la boucle des commentaires?>
 </div>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
-<a class="navigation__link__1" href="editbillet.php">Editer billets</a>
-        <br>
-<a class="navigation__link__1" href="index.php">Retour au blog</a>
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>  
 </body>
 </html>

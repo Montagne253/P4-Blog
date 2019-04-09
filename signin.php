@@ -70,7 +70,7 @@ if (isset($_POST['signin']))
                             
                             
                             $_SESSION['flash'] = "Votre compe à été créé !";
-                            //header('Location: connexion.php');
+                            header('Location: connexion.php');
                         
                             
                             //header('Location: signin.php');
@@ -90,6 +90,8 @@ if (isset($_POST['signin']))
             }
         }
     }
+
+    
 
 }
 
@@ -111,8 +113,6 @@ if (isset($_POST['signin']))
 
 <div class="container_signIn" align="center">
     <h2>Inscription</h2>
-
-    <br> <br>
     <form method="POST" action="signin.php">
         <input type="pseudo" name="pseudo" id="" placeholder="pseudo" value="<?php if(isset($pseudo)) { echo $pseudo; } ?>"><br><br>
         <input type="email" name="email" id="" placeholder="email" value="<?php if(isset($email)) { echo $email; } ?>"><br><br>
@@ -136,14 +136,7 @@ if (isset($_POST['signin']))
 unset($_SESSION['flash']);
 ?>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 <p style="color: #2451b9; font-weight: bold;">Déjà un compte ?</p>
-<br>
 
 <div class="btn_signin">
 <a class="btn btn-primary_nav_edit" href="connexion.php">Se connecter</a>

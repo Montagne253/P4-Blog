@@ -1,8 +1,9 @@
 <?php 
 session_start();
 
+require "model/BilletManager.php";
+require "model/Billet.php";
 
-$bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo932018');
 
    
     if (!empty($_POST['submitedit'])) {
@@ -25,13 +26,14 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
             $validation = false;
         }
         if($validation==true) {
-            $req = $bdd->prepare('INSERT INTO billet (auteur, titre, contenu, date_creation) VALUES(?, ?, ?, NOW())');
+            $billet = new Billet([
+                'auteur' => $_POST['auteur'],
+                'titre' => $_POST['titre'],
+                'contenu' => $_POST['contenu']
+            ]);
+            $billetManager = new BilletManager;
+            $billetManager->add($billet);
             
-            $req->execute(array(
-                $_POST['auteur'], 
-                $_POST['titre'],
-                $_POST['contenu']
-            ));
             $_SESSION['flash'] = "Votre billet à bien été créé !";
            
             // Redirection du visiteur vers la page des billlets
@@ -68,17 +70,13 @@ unset($_SESSION['flash']);
 ?>
     <div align="center">
         <h2>Créer un nouveau billet</h2>
-        <br>
-        <br>
-        <br>
+
         <?php 
         if(isset($error))
         {
             echo '<font color="red">' . $error . "</font>";
         }
         ?>
-        <br>
-        <br>
 
         <form method="POST" action="redaction.php">
             <input type="text" name="auteur" placeholder="auteur"><br> <p><?php if(isset($error_auteur)){ echo '<font color="red">' . $error_auteur . "</font>"; }?></p><br><br>
@@ -89,14 +87,16 @@ unset($_SESSION['flash']);
             
         </form>
 </div>
-        <br>
-        <br>
-   
-    <div class="btn_edit">
-        <a class="btn btn-primary_nav_edit" role="button" href="index.php">Retour au blog</a>
-        <a class="btn btn-primary_nav_edit" role="button" href="deconnexion.php">Se deconnecter</a>
-        <a class="btn btn-primary_nav_edit" role="button" href="billet.php">Mes billets</a>
-    </div>
+<br>
+<br>
+
+<div class="btn_connexion" align='center'>
+<a class="btn btn-primary_nav_edit" role="button" href="index.php">Retour au blog</a>
+<a class="btn btn-primary_nav_edit" role="button" href="deconnexion.php">Déconnexion</a>
+</div>
+
+<br>
+<br>
 
     
 

@@ -2,43 +2,14 @@
 session_start();
 
 
-$bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo932018');
+require "model/BilletManager.php";
+require "model/Billet.php";
 
-?>
-<?php
-
- 
-
-function truncate($string, $max_length = 30, $replacement = '', $trunc_at_space = false)
-
-{
-
-    $max_length -= strlen($replacement);
-
-    $string_length = strlen($string);
-
-    if($string_length <= $max_length)
-
-    return $string;
-
-    if( $trunc_at_space && ($space_position = strrpos($string, ' ', $max_length-$string_length)) )
-
-    $max_length = $space_position;
-    return substr_replace($string, $replacement, $max_length);
-}
-?>
-<?php
+$billetManager = new BilletManager;
+$billets = $billetManager->getListMod();
 
 
-         // On récupère les billets
-         $req = $bdd->query('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation_fr FROM billet ORDER BY id DESC');
-
-            
-         while ($donnees = $req->fetch())
-          {
-
-
-             
+          
 ?>
     
 <!DOCTYPE html>
@@ -61,9 +32,6 @@ function truncate($string, $max_length = 30, $replacement = '', $trunc_at_space 
             <div class="pos-f-t">
                 <div class="collapse" id="navbarToggleExternalContent">
                 <a class="navbar-brand" href="connexion.php">Admin</a>
-                </div>
-                <div class="collapse" id="navbarToggleExternalContent">
-                <a class="navbar-brand" href="billet.php">Mes billets</a>
                 </div>
                 <div class="collapse" id="navbarToggleExternalContent">
                 <a class="navbar-brand" href="index.php">HOME</a>
@@ -92,36 +60,28 @@ function truncate($string, $max_length = 30, $replacement = '', $trunc_at_space 
     <tr class="header_tab">
         <td scope="col" >Titre</td>
         <td scope="col" >Date</td>
+        <td scope="col" >Auteur</td>
         <td scope="col" >Billet</td>
-        <td></td>
         <td></td>
     </tr>
 </thead>
 <tbody>
     
 <?php
+foreach ($billets as $billet) {
+    //while ($donnees = $req->fetch())?>
 
-while ($donnees = $req->fetch())
-    
-{
-?>
+
     <tr>
-        <td scope="row"><?php echo htmlspecialchars($donnees['titre']); ?></td>
-        <td><?php echo $donnees['date_creation_fr']; ?></td>
+        <td scope="row"><?= htmlspecialchars($billet->titre()) ?></td>
+        <td><?= $billet->dateCreation() ?></td>
+        <td><?php echo $billet->auteur(); ?></td>
         <td>
-            <?php
- 
-            $str = $donnees['contenu'];
-            $str = truncate($str, 50, '...', true);
-            echo  ' " '  .  $str . ' " '   ;
-            // Suspendisse at magna non lectus...
-                        // On affiche le contenu du billet
-                    // echo nl2br(htmlspecialchars($donnees['contenu']));
-            ?>
+        <?= $resumeComment = $billet->contenu() ?>...
         </td>
           
         <td>
-        <em><a class="btn btn-primary_nav_2" href="deleteComment.php?billet=<?php echo $donnees['id']; ?>">Supprimer commentaires</a></em>
+        <em><a class="btn btn-primary_nav_2" href="deleteComment.php?billet=<?php echo $billet->id(); ?>">Modérer commentaires</a></em>
         </td>
     </tr>
   </tbody>
@@ -133,15 +93,7 @@ while ($donnees = $req->fetch())
     
 ?>
        
-       
 
-
-
-<?php
-    } // Fin de la boucle des billets
-          
-    $req->closeCursor();
-?>
 </div>
 
 

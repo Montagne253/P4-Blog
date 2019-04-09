@@ -1,17 +1,17 @@
 <?php 
 session_start();
        
-$bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo932018');
+
+
+require "model/ProfilManager.php";
+require "model/Profil.php";
+
 
 if(isset($_SESSION['id'])) {
 
-    
-    $requser = $bdd->prepare('SELECT * FROM editeur WHERE id = ?');
-    $requser->execute(array($_SESSION['id']));
-    $userinfo = $requser->fetch();
-
-
-
+  $ProfilManager = new ProfilManager;
+  $profil = $ProfilManager->get($_SESSION['id']);
+ 
 ?>
 
 <!DOCTYPE html>
@@ -48,24 +48,24 @@ if(isset($_SESSION['id'])) {
                 
 </header>
 
-    <div id="profil" align="center">
-        <h2>Profil de <?php echo $userinfo['pseudo']; ?></h2>
+  <div id="profil" align="center">
+      <h2>Profil de <?php echo $profil->pseudo(); ?></h2>
 
-        <br> <br>
+      <br> <br>
 
-        <p>Pseudo : <?php echo $userinfo['pseudo']; ?></p>
+      <p>Pseudo : <?php echo $profil->pseudo(); ?></p>
 
-        <br>
+      <br>
 
-        <p>Email : <?php echo $userinfo['email']; ?></p>
+      <p>Email : <?php echo $profil->email(); ?></p>
 
-        <br>
+      <br>
 
-        <?php 
-        if(isset($_SESSION['id']) AND $userinfo['id'] == $_SESSION['id'])
-        
-        {
-        ?>
+<?php 
+if(isset($_SESSION['id']) AND $profil->id() == $_SESSION['id'])
+
+{
+?>
 
 </div>
 <h6>ATELIER</h6>
@@ -73,12 +73,12 @@ if(isset($_SESSION['id'])) {
   <tbody>
     <tr>
       <th class="creer" scope="row">CRÉER</th>
-      <td><a role="button" href="redaction.php" class="btn btn-primary_edit">Billets</a></td>
+      <td><a role="button" href="redaction.php" class="btn btn-primary_edit">Nouveau billet</a></td>
       <td><a role="button" href="signin.php" class="btn btn-primary">Nouveau compte</a></td>
     </tr>
     <tr>
       <th class="editer" scope="row">ÉDITER</th>
-      <td><a class="btn btn-primary_edit" role="button" href="editbillet.php">Billets</a></td>
+      <td><a class="btn btn-primary_edit" role="button" href="editbillet.php">Mes billets</a></td>
       <td><a class="btn btn-primary" role="button" href="editerprofil.php">Mon profil</a></td>
       
     </tr>
@@ -89,14 +89,15 @@ if(isset($_SESSION['id'])) {
   </tbody>
 </table>
 
-<div class="nav__exit">
-        <a class="btn btn-primary_nav" role="button" href="index.php">Retour blog</a>
-        <br>
-        <a class="btn btn-primary_nav" role="button" href="deconnexion.php">Deconnexion</a>
-        <?php
-        }
-        ?>
-<div>
+
+<div class="btn_connexion" align='center'>
+        <a class="btn btn-primary_nav_edit" role="button" href="index.php">Retour au blog</a>
+        <a class="btn btn-primary_nav_edit_redac_disco" role="button" href="deconnexion.php">Déconnexion</a>
+
+<?php
+}
+?>
+</div>
 
     
 

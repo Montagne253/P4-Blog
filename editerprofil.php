@@ -1,15 +1,21 @@
 <?php 
 session_start();
+
+require "model/ProfilManager.php";
+require "model/Profil.php";
        
-$bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo932018');
+//$bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo932018');
 
 if(isset($_SESSION['id']))
 {
-    $requser = $bdd->prepare("SELECT * FROM editeur WHERE id = ?");
+    /*$requser = $bdd->prepare("SELECT * FROM editeur WHERE id = ?");
     $requser->execute(array(
         $_SESSION['id']
     ));
-    $user = $requser->fetch();
+    $user = $requser->fetch();*/
+
+    $ProfilManager = new ProfilManager;
+    $profil = $ProfilManager->get($_SESSION['id']);
 
 
 
@@ -22,13 +28,23 @@ if(isset($_SESSION['id']))
         $confirm_password = $_POST['confirmnewmdp'];
         $hash_password = password_hash($newmdp, PASSWORD_BCRYPT);
 
-        $insertpseudo = $bdd->prepare("UPDATE editeur SET pseudo = ?, email = ?, pass = ?, date_modification = NOW() WHERE id = ?");
+        
+        $paul = new Profil(array(
+            'pseudo' => $newpseudo,
+            'email' =>  $newemail,
+            'pass' => $hash_password,
+            'id' => $_SESSION['id']
+        ));
+        $pierre = new ProfilManager();
+        $pierre->update($paul);
+
+       /* $insertpseudo = $bdd->prepare("UPDATE editeur SET pseudo = ?, email = ?, pass = ?, date_modification = NOW() WHERE id = ?");
         $insertpseudo->execute(array(
             $newpseudo,
             $newemail,
             $hash_password,
             $_SESSION['id']
-        ));
+        ));*/
 
         $_SESSION['flash'] = "Votre profil a bien été modifié !";
 
@@ -37,11 +53,6 @@ if(isset($_SESSION['id']))
         exit();
     } 
     
-    
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -59,8 +70,8 @@ if(isset($_SESSION['id']))
     <div align="center">
         <h2>Editer mon profil</h2>
         <form method="POST" action="">
-            <input type="text" name="newpseudo" placeholder="pseudo" value="<?php echo $user['pseudo']; ?>" /><br><br>
-            <input type="email" name="newemail" placeholder="email" value="<?php echo $user['email']; ?>"/><br><br>
+            <input type="text" name="newpseudo" placeholder="pseudo" value="<?php echo /*$user['pseudo']*/$profil->pseudo(); ?>" /><br><br>
+            <input type="email" name="newemail" placeholder="email" value="<?php echo /*$user['email']*/$profil->email(); ?>"/><br><br>
             <input type="password" name="newmdp" placeholder="new password"/><br><br>
             <input type="password" name="confirmnewmdp" placeholder="confirm new password" /><br><br>
             <input class="btn_submit_edit" type="submit"  value="Enregistrer" /><br><br>
@@ -81,11 +92,9 @@ unset($_SESSION['flash']);
     </div>
     <br>
     <br>
-    <div class="btn_edit_profil">
-    <a class="btn btn-primary_nav_edit" href="connexion.php">Retour profil</a>
-    </div>
-
-      
+    
+    <a class="btn btn-primary_nav_edit_profil" href="connexion.php">Retour profil</a>
+    
     
 </body>
 </html>

@@ -1,38 +1,35 @@
 <?php 
 session_start();
 
+require "model/ProfilManager.php";
+require "model/Profil.php";
 
-       
-$bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo932018');
+
+
+
 
 if(isset($_SESSION['id'])) {
     header('Location: profil.php?id='.$_SESSION['id']);
     exit();
 }
-        
-        
 
-    if(isset($_POST['submitconnect'])) 
+    if(isset($_POST['submitConnect'])) 
     {
-        $pseudoconnect = htmlspecialchars($_POST['pseudoconnect']);
+        $pseudoConnect = htmlspecialchars($_POST['pseudoConnect']);
         $passwordconnect = $_POST['passwordconnect'];
             
-        if(!empty($pseudoconnect) AND !empty($passwordconnect))
+        if(!empty($pseudoConnect) AND !empty($passwordconnect))
         {
-            $requser = $bdd->prepare("SELECT * FROM editeur WHERE pseudo = ?");
-            $requser->execute(array(
-                $pseudoconnect
-            ));
-            $userexist = $requser->rowCount();
-            if($userexist == 1) 
+            $ProfilManager = new ProfilManager;
+            $user = $ProfilManager->getPseudo($pseudoConnect);
+
+           // $userexist = $requser->rowCount();
+            if($user) 
             {
-                
-               
-                $userinfo = $requser->fetch();
-                
-                if((password_verify($passwordconnect, $userinfo['pass'])))
+             
+                if((password_verify($passwordconnect, $user->pass())))
                 {
-                    $_SESSION['id'] = $userinfo['id'];
+                    $_SESSION['id'] = $user->id();
                    
                    header('Location: profil.php?id='.$_SESSION['id']);
                     
@@ -42,9 +39,6 @@ if(isset($_SESSION['id'])) {
                 {
                     $error = 'COMPTE INVALIDE<br>Le pseudo ou le mot de passe est incorrect ou n\'existe pas.' ;
                 }
-
-               
-                
             }
             else 
             {
@@ -54,8 +48,7 @@ if(isset($_SESSION['id'])) {
         else 
         {
             $error = 'Tous les champs doivent être remplis !';  
-        }
-            
+        }   
     }
 
 ?>
@@ -78,9 +71,9 @@ if(isset($_SESSION['id'])) {
     <br> <br>
 
     <form method="POST" action="connexion.php">
-       <input type="pseudo" name="pseudoconnect" placeholder="pseudo">
+       <input type="pseudo" name="pseudoConnect" placeholder="pseudo">
        <input type="password" name="passwordconnect" id="" placeholder="password">
-       <input class="btn_submit_edit" type="submit" name="submitconnect" value="Connexion">
+       <input class="btn_submit_edit" type="submit" name="submitConnect" value="Connexion">
     </form>
     <br>
     <br>

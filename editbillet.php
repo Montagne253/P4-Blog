@@ -1,8 +1,27 @@
 <?php 
 session_start();
 
+require "model/BilletManager.php";
+require "model/Billet.php";
 
-$bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo932018');
+$billetManager = new BilletManager;
+$billets = $billetManager->getListMod();
+
+
+if(isset($_GET['billet']) AND !empty($_GET['billet'])) {
+
+    $billetId = htmlspecialchars($_GET['billet']);
+
+    $delete = new BilletManager;
+    $billet = $delete->delete($billetId);
+
+
+
+    header('Location: editbillet.php');
+
+    
+        
+}   
 
 ?>
 
@@ -17,8 +36,6 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link href="projet4.css" rel="stylesheet" />
-    
-    
 </head>
 <body>
 <header >
@@ -28,7 +45,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
                 <a class="navbar-brand" href="connexion.php">Admin</a>
                 </div>
                 <div class="collapse" id="navbarToggleExternalContent">
-                <a class="navbar-brand" href="billet.php">Mes billets</a>
+                <a class="navbar-brand" href="index.php">HOME</a>
                 </div>
                 <nav class="navbar navbar-light bg-light">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,24 +53,13 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
                     </button>
                     <div class="title">
                         <h2>JEAN FORTEROCHE | ÉCRIVAIN.</h2>
-                        <p>Édition</p>
+                        <p>Édition des billets</p>
                     </div>
                 </nav>
             </div>
     </div>     
 </header>
 
-<?php
-
-         // On récupère les 5 derniers billets
-    $req = $bdd->query('SELECT id, auteur, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation_fr FROM billet ORDER BY date_creation DESC');
-    
-  
-        
-        
-       
-?>
-   
 
 <div class="container-fluid">
 
@@ -70,21 +76,16 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
 </thead>
   <tbody>
     
-<?php
-
-while ($donnees = $req->fetch())
-    
-{
-?>
+<?php foreach ($billets as $billet) { ?>
     <tr class="btn_modif">
-        <td scope="row"><?php echo htmlspecialchars($donnees['titre']); ?></td>
-        <td><?php echo $donnees['auteur']; ?></td>
-        <td><?php echo $donnees['date_creation_fr']; ?></td>
+        <td scope="row"><?php echo htmlspecialchars($billet->titre()); ?></td>
+        <td><?php echo $billet->auteur(); ?></td>
+        <td><?php echo $billet->dateCreation(); ?></td>
         <td>
-            <a class="btn btn-primary_nav" href="edit.php?billet=<?php echo $donnees['id']; ?>">Modifier</a>
+            <a class="btn btn-primary_nav" href="edit.php?billet=<?php echo $billet->id(); ?>">Modifier</a>
         </td>   
         <td>
-            <a class="btn btn-primary_nav" href="delete.php?billet=<?php echo $donnees['id']; ?>">Supprimer</a>
+            <a class="btn btn-primary_delete_nav" href="editbillet.php?billet=<?php echo $billet->id(); ?>">Supprimer</a>
         </td>
     </tr>
   </tbody>

@@ -1,29 +1,21 @@
 <?php
 // Connexion à la base de données
 session_start();
-    try
-    {
-        $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo932018');
-    }
-    catch(Exception $e)
-    {
-            die('Erreur : '.$e->getMessage());
-    }
-
-    
-
-        // Récupération du billet
-$req = $bdd->prepare('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation_fr FROM billet WHERE id = ?');
-$req->execute(array($_GET['billet']));
-$donnees = $req->fetch();
 
 
+require "model/BilletManager.php";
+require "model/Billet.php";
 
-$req->closeCursor(); // Important : on libère le curseur pour la prochaine requête
+require "model/CommentManager.php";
+require "model/Comment.php";
+   
+$billetManager = new BilletManager;
+$billet = $billetManager->get($_GET['billet']);
 
-// Récupération des commentaires
-$req = $bdd->prepare('SELECT auteur, commentaire, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%imin%ss\') AS date_commentaire_fr FROM comment WHERE id_billet = ? ORDER BY date_commentaire');
-$req->execute(array($_GET['billet']));
+$commentManager = new CommentManager;
+$comments = $commentManager->getList($_GET['billet']);
+
+
 
 
     if (!empty($_POST)) {
@@ -34,45 +26,48 @@ $req->execute(array($_GET['billet']));
         if(empty($_POST['auteur'])) {
             $error_auteur = 'Aucun auteur';
             $validation = false;
-
         }
         if(empty($_POST['commentaire'])) {
             $error_commentaire = 'Le commentaire est vide';
-            $validation = false;
+            $validation = false; 
         }
         if($validation==true) {
                     // Insertion du message à l'aide d'une requête préparée
-            $req = $bdd->prepare('INSERT INTO comment (id_billet, auteur, commentaire, date_commentaire) VALUES(:idBillet, :auteur, :commentaire, NOW())');
-            $req->execute(array(
-               "idBillet" => $_GET['billet'], 
+            $comment = new Comment([
+                "id_billet" => $_GET['billet'], 
                 "auteur" => $_POST['auteur'], 
-                "commentaire" => $_POST['commentaire']
-            ));
+                "commentaire" => $_POST['commentaire'],
+                "dateCommentaire" => $_POST['date_commentaire']
+            ]);
+
+            $commentManager = new CommentManager;
+            $commentManager->add($comment);
+           
             
 
             $_SESSION['flash'] = "Votre commentaire a bien été posté !";
             
             
             // Redirection du visiteur vers la page du commentaire
-            header('Location: comment.php?billet=' . $_GET['billet']);
+            header('Location: billet.php?billet=' . $_GET['billet']);
             exit();
 
         }
+
+  
     }
 
-      /*//fonction "signaler" commentaires   | pas au point   
-
-$signal = $bdd->prepare('UPDATE comment SET signaler = ? + 1 WHERE id = ?');
+    //fonction "signaler" commentaires   | pas au point   
+    /*
+$signal = $bdd->prepare('UPDATE comment SET signaler = :signaler + 1 WHERE id = ?');
 $signal->execute(array( 
-$_POST['signaler']
-   ));*/
+    "signaler"=>$_POST['signaler']
+));
 
-   
+$signal->closecursor();
+
+   */
 ?>
-
-
-
-
 
 
 
@@ -95,10 +90,7 @@ $_POST['signaler']
 
             <div class="pos-f-t">
                 <div class="collapse" id="navbarToggleExternalContent">
-                <a class="navbar-brand" href="connexion.php">Admin</a>
-                </div>
-                <div class="collapse" id="navbarToggleExternalContent">
-                <a class="navbar-brand" href="billet.php">Mes billets</a>
+                <a class="navbar-brand" href="index.php">HOME</a>
                 </div>
                 <nav class="navbar navbar-light bg-light">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -122,19 +114,19 @@ $_POST['signaler']
         <?= $flash ?>
     </div>
 <?php   
-
 } 
 unset($_SESSION['flash']);
 ?>
 
 <div class="news">
     <h3>
-        <?php echo htmlspecialchars($donnees['titre']); ?>
-        <em>le <?php echo $donnees['date_creation_fr']; ?></em>
+        <?php echo htmlspecialchars($billet->titre()); ?>
+        <br />
+        <div class="date">le <?= $billet->dateModification(); ?></div>
     </h3>
     <p>
     <?php      // On affiche le contenu du billet
-         echo nl2br(htmlspecialchars($donnees['contenu'])); 
+         echo nl2br(htmlspecialchars($billet->contenu())); 
     ?>
     </p>
    
@@ -154,35 +146,18 @@ unset($_SESSION['flash']);
 
 <div class="comment">
 <h4>Commentaires</h4>
-<form method="post" action="comment.php?billet=<?php echo $_GET['billet'] ?>" method="post">
-        <table class="commentTab">
-            <tr>
-                <td >
-                <label for="auteur">Auteur</label> :        
-                </td>
-                <td>
-                <input type="text" name="auteur" id="auteur" /><br />
-                <p><?php if(isset($error_auteur)){ echo $error_auteur; }?></p> 
-                </td>
-            </tr>
-            <tr>
-                <td>
-                <label for="commentaire">Commenter</label> :            
-                </td>
-                <td>
-                <input type="text" name="commentaire" id="commentaire" /><br />
-                <p><?php if(isset($error_commentaire)){ echo $error_commentaire; } ?></p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <br>
-                <td>
-                <input class="btn btn-primary" type="submit" value="Envoyer" />
-                </td>
-            </tr>
-        </table>
+    <form method="post" action="billet.php?billet=<?php echo $_GET['billet'] ?>" method="post">
+    <div class="addComment">
+        <div class="addComment_name">  
+            <input type="text" name="auteur" id="auteur" placeholder="Auteur" />
+            <p class="error"><?php if(isset($error_auteur)){ echo $error_auteur; }?></p>
+        </div>
+        <div class="addComment_com"  >    
+            <textarea type="text" name="commentaire" id="commentaire" placeholder="Commentaire"></textarea><br />
+            <p class="error"><?php if(isset($error_commentaire)){ echo $error_commentaire; } ?></p>
+        </div>
+        <input class="btn_submit_edit_com" type="submit" value="Envoyer" />
+    </div>
     </form>
 <table class="table table-hover table-dark">
 <thead>
@@ -193,12 +168,14 @@ unset($_SESSION['flash']);
 </thead>
   <tbody>
 
-<?php while ($donnees = $req->fetch()) { ?>
+<?php //while ($donnees = $req->fetch()) {
+foreach($comments as $comment) { ?>
 
     <tr class="btn_modif">
        
-        <td><strong><?php echo htmlspecialchars($donnees['auteur']); ?></strong><br> <?php echo $donnees['date_commentaire_fr']; ?></td>
-        <td><?php echo nl2br(htmlspecialchars($donnees['commentaire'])); ?></td>
+        <td><strong><?php echo htmlspecialchars($comment->auteur());/*['auteur']);*/?></strong><br>
+        <?php echo $comment->dateCommentaire();/*['date_commentaire']*/?></td>
+        <td><?php echo nl2br(htmlspecialchars($comment->commentaire()));/*['commentaire']));*/?></td>
         <td>
         <a class="btn btn-primary_nav_edit_small" name="signaler">Signaler</a>
         </td>     
@@ -207,8 +184,6 @@ unset($_SESSION['flash']);
        
 <?php
     } // Fin de la boucle des commentaires
-    $req->closeCursor();
-    
 ?>
     </tbody>
 </div>
