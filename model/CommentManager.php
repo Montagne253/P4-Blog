@@ -8,7 +8,7 @@ class CommentManager
     {
         try
         {
-           $this->_db = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo932018');
+           $this->_db = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', 'Dj253kolo932018');
         }
         catch(Exception $e)
         {
@@ -20,7 +20,7 @@ class CommentManager
         
         $comments = [];
     
-        $req = $this->_db->prepare('SELECT id, id_billet, auteur, commentaire, signaler, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%imin%ss\') AS date_commentaire FROM comment WHERE id_billet = ? ORDER BY date_commentaire DESC');
+        $req = $this->_db->prepare('SELECT id, id_billet, author, comment, signaler, DATE_FORMAT(date_comment, \'%d/%m/%Y à %Hh%imin%ss\') AS date_comment FROM comment WHERE id_billet = ? ORDER BY date_comment DESC');
         
         $req->execute(array(
             $id
@@ -37,11 +37,11 @@ class CommentManager
 
     public function add(Comment $comment)
     {
-        $req = $this->_db->prepare('INSERT INTO comment (id_billet, auteur, commentaire, date_commentaire) VALUES(?, ?, ?, NOW())');
+        $req = $this->_db->prepare('INSERT INTO comment (id_billet, author, comment, date_comment) VALUES(?, ?, ?, NOW())');
             $req->execute(array(
                 $comment->idBillet(),
-                $comment->auteur(),
-                $comment->commentaire()
+                $comment->author(),
+                $comment->comment()
             ));
             
     }

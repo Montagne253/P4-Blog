@@ -7,8 +7,7 @@ require "model/Billet.php";
 $billetManager = new BilletManager;
 $billets = $billetManager->getList();
 
-//$resumeComment = substr($donnees['contenu'], 0, 50);
-//var_dump($donnee['contenu']);
+
 
 ?>
 
@@ -18,7 +17,7 @@ $billets = $billetManager->getList();
         <meta charset="utf-8" />
         <title>Jean Laroche | Blog des écrivains</title>
     <link href="projet4.css" rel="stylesheet" /> 
-    <link href="style.css" rel="stylesheet" />
+    <link href="public/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     </head>
 
@@ -56,13 +55,13 @@ $billets = $billetManager->getList();
         <div class="news">
             <h3>
                 
-                <?= htmlspecialchars($billet->titre()) ?>
+                <?= htmlspecialchars($billet->title()) ?>
                 <br />
                 <div class="date">le <?= $billet->dateCreation() ?></div>
             </h3>
             <p>
     
-            <?= $resumeComment = $billet->contenu() ?>...
+            <?= $resumeComment = $billet->content() ?>...
             <br />
             <em><a href="billet.php?billet=<?= $billet->id() ?>">Commentaires</a></em>
             <a class="btn btn-primary_nav_edit" href="billet.php?billet=<?= $billet->id() ?>">Lire la suite</a>

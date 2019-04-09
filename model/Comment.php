@@ -4,10 +4,10 @@ class Comment
 {
     private $_id;
     private $_idBillet;
-    private $_auteur;
-    private $_commentaire;
+    private $_author;
+    private $_comment;
     private $_signaler;
-    private $_dateCommentaire;
+    private $_datecomment;
     
 
     public function __construct(Array $data)
@@ -26,21 +26,21 @@ class Comment
         {
             $this->setIdBillet($data['id_billet']);
         }
-        if(isset($data['auteur']))
+        if(isset($data['author']))
         {
-            $this->setAuteur($data['auteur']);
+            $this->setAuthor($data['author']);
         }
-        if(isset($data['commentaire']))
+        if(isset($data['comment']))
         {
-            $this->setCommentaire($data['commentaire']);
+            $this->setComment($data['comment']);
         }
         if(isset($data['signaler']))
         {
             $this->setSignaler($data['signaler']);
         }
-        if(isset($data['date_commentaire']))
+        if(isset($data['date_comment']))
         {
-            $this->setDateCommentaire($data['date_commentaire']);
+            $this->setDateComment($data['date_comment']);
         }
     }
 
@@ -54,14 +54,14 @@ class Comment
         return $this->_idBillet;
 
     }
-    public function auteur()
+    public function author()
     {
-        return $this->_auteur;
+        return $this->_author;
 
     }
-    public function commentaire()
+    public function comment()
     {
-        return $this->_commentaire;
+        return $this->_comment;
 
     }
     public function signaler()
@@ -69,9 +69,9 @@ class Comment
         return $this->_signaler;
 
     }
-    public function dateCommentaire()
+    public function dateComment()
     {
-        return $this->_dateCommentaire;
+        return $this->_dateComment;
 
     }
 
@@ -83,21 +83,21 @@ class Comment
     {
          $this->_idBillet = $idBillet;
     }
-    public function setAuteur($auteur)
+    public function setAuthor($author)
     {
-         $this->_auteur = $auteur;
+         $this->_author = $author;
     }
-    public function setcommentaire($commentaire)
+    public function setComment($comment)
     {
-         $this->_commentaire = $commentaire;
+         $this->_comment = $comment;
     }
     public function setSignaler($signaler)
     {
          $this->_signaler = $signaler;
     }
-    public function setDateCommentaire($dateCommentaire)
+    public function setDateComment($dateComment)
     {
-         $this->_dateCommentaire = $dateCommentaire;
+         $this->_dateComment = $dateComment;
     }
 
 }

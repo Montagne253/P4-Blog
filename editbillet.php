@@ -35,7 +35,7 @@ if(isset($_GET['billet']) AND !empty($_GET['billet'])) {
     <title>Jean Laroche | Écrivain</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link href="projet4.css" rel="stylesheet" />
+    <link href="public/projet4.css" rel="stylesheet" />
 </head>
 <body>
 <header >

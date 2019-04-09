@@ -8,7 +8,7 @@ class ProfilManager
     {
         try
         {
-           $this->_db = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo932018');
+           $this->_db = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', 'Dj253kolo932018');
         }
         catch(Exception $e)
         {

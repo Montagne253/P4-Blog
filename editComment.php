@@ -9,6 +9,7 @@ $billetManager = new BilletManager;
 $billets = $billetManager->getListMod();
 
 
+
           
 ?>
     
@@ -19,7 +20,7 @@ $billets = $billetManager->getListMod();
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="projet4.css" rel="stylesheet" />
+    <link href="public/projet4.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet" />
     <title>Billets</title>
@@ -73,11 +74,11 @@ foreach ($billets as $billet) {
 
 
     <tr>
-        <td scope="row"><?= htmlspecialchars($billet->titre()) ?></td>
+        <td scope="row"><?= htmlspecialchars($billet->title()) ?></td>
         <td><?= $billet->dateCreation() ?></td>
-        <td><?php echo $billet->auteur(); ?></td>
+        <td><?php echo $billet->author(); ?></td>
         <td>
-        <?= $resumeComment = $billet->contenu() ?>...
+        <?= $resumeComment = $billet->content() ?>...
         </td>
           
         <td>

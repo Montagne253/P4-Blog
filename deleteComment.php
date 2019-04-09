@@ -20,7 +20,8 @@ if (isset($_POST['delete'])) {
 
     $commentManager = new CommentManager;
     $comment = $commentManager->delete($_POST['idComment']);
-   
+    
+
 
     
     header('Location: deleteComment.php?billet='.$_GET['billet']);
@@ -37,9 +38,9 @@ if (isset($_POST['delete'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="projet4.css" rel="stylesheet" />
+    <link href="public/projet4.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link href="style.css" rel="stylesheet" />
+    <link href="public/style.css" rel="stylesheet" />
     <title>Commentaires</title>
 </head>
     
@@ -72,13 +73,13 @@ if (isset($_POST['delete'])) {
 <br>
 <div class="news">
     <h3>
-        <?php echo htmlspecialchars($billet->titre()); ?>
+        <?php echo htmlspecialchars($billet->title()); ?>
         <br />
         <div class="date">le <?= $billet->dateModification(); ?></div>
     </h3>
     <p>
-    <?php      // On affiche le contenu du billet
-         echo nl2br(htmlspecialchars($billet->contenu())); 
+    <?php      // On affiche le content du billet
+         echo nl2br(htmlspecialchars($billet->content())); 
     ?>
     </p>
    
@@ -109,8 +110,8 @@ if (isset($_POST['delete'])) {
 <?php foreach ($comments as $comment) { ?>
     <tr class="btn_modif">
     
-    <td><strong><?php echo htmlspecialchars($comment->auteur()); ?></strong> le <?php echo $comment->dateCommentaire(); ?></td>
-    <td><?php echo htmlspecialchars($comment->commentaire()) ?></td>
+    <td><strong><?php echo htmlspecialchars($comment->author()); ?></strong> le <?php echo $comment->dateCommentaire(); ?></td>
+    <td><?php echo htmlspecialchars($comment->comment()) ?></td>
     <td><?php echo htmlspecialchars($comment->signaler()) ?></td>
     <td>
         

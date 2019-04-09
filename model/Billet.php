@@ -3,9 +3,9 @@
 class Billet
 {
     private $_id;
-    private $_auteur;
-    private $_titre;
-    private $_contenu;
+    private $_author;
+    private $_title;
+    private $_content;
     private $_dateCreation;
     private $_dateModification;
 
@@ -20,18 +20,18 @@ class Billet
         {
             $this->setId($data['id']);
         }
-        if(isset($data['auteur']))
+        if(isset($data['author']))
         {
-            $this->setAuteur($data['auteur']);
+            $this->setAuthor($data['author']);
           
         }
-        if(isset($data['titre']))
+        if(isset($data['title']))
         {
-            $this->setTitre($data['titre']);
+            $this->setTitle($data['title']);
         }
-        if(isset($data['contenu']))
+        if(isset($data['content']))
         {
-            $this->setContenu($data['contenu']);
+            $this->setContent($data['content']);
         }
         if(isset($data['date_creation_fr']))
         {
@@ -48,19 +48,19 @@ class Billet
         return $this->_id;
 
     }
-    public function auteur()
+    public function author()
     {
-        return $this->_auteur;
+        return $this->_author;
 
     }
-    public function titre()
+    public function title()
     {
-        return $this->_titre;
+        return $this->_title;
 
     }
-    public function contenu()
+    public function content()
     {
-        return $this->_contenu;
+        return $this->_content;
 
     }
     public function dateCreation()
@@ -78,17 +78,17 @@ class Billet
     {
          $this->_id = $id;
     }
-    public function setAuteur($auteur)
+    public function setAuthor($author)
     {
-         $this->_auteur = $auteur;
+         $this->_author = $author;
     }
-    public function setTitre($titre)
+    public function setTitle($title)
     {
-         $this->_titre = $titre;
+         $this->_title = $title;
     }
-    public function setContenu($contenu)
+    public function setContent($content)
     {
-         $this->_contenu = $contenu;
+         $this->_content = $content;
     }
     public function setDateCreation($dateCreation)
     {

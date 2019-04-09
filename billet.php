@@ -16,6 +16,9 @@ $commentManager = new CommentManager;
 $comments = $commentManager->getList($_GET['billet']);
 
 
+$bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo932018');
+
+
 
 
     if (!empty($_POST)) {
@@ -23,32 +26,30 @@ $comments = $commentManager->getList($_GET['billet']);
         $validation = true;
 
     
-        if(empty($_POST['auteur'])) {
-            $error_auteur = 'Aucun auteur';
+        if(empty($_POST['author'])) {
+            $error_author = 'Aucun auteur';
             $validation = false;
         }
-        if(empty($_POST['commentaire'])) {
-            $error_commentaire = 'Le commentaire est vide';
+        if(empty($_POST['comment'])) {
+            $error_comment = 'Le commentaire est vide';
             $validation = false; 
         }
         if($validation==true) {
                     // Insertion du message à l'aide d'une requête préparée
             $comment = new Comment([
                 "id_billet" => $_GET['billet'], 
-                "auteur" => $_POST['auteur'], 
-                "commentaire" => $_POST['commentaire'],
-                "dateCommentaire" => $_POST['date_commentaire']
+                "author" => $_POST['author'], 
+                "comment" => $_POST['comment']
             ]);
 
             $commentManager = new CommentManager;
             $commentManager->add($comment);
-           
             
 
-            $_SESSION['flash'] = "Votre commentaire a bien été posté !";
+            $_SESSION['flash'] = "Votre comment a bien été posté !";
             
             
-            // Redirection du visiteur vers la page du commentaire
+            // Redirection du visiteur vers la page du comment
             header('Location: billet.php?billet=' . $_GET['billet']);
             exit();
 
@@ -57,16 +58,7 @@ $comments = $commentManager->getList($_GET['billet']);
   
     }
 
-    //fonction "signaler" commentaires   | pas au point   
-    /*
-$signal = $bdd->prepare('UPDATE comment SET signaler = :signaler + 1 WHERE id = ?');
-$signal->execute(array( 
-    "signaler"=>$_POST['signaler']
-));
-
-$signal->closecursor();
-
-   */
+   
 ?>
 
 
@@ -76,9 +68,9 @@ $signal->closecursor();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="projet4.css" rel="stylesheet" />
+    <link href="public/projet4.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link href="style.css" rel="stylesheet" />
+    <link href="public/style.css" rel="stylesheet" />
     <title>Commentaires</title>
 </head>
 
@@ -120,13 +112,13 @@ unset($_SESSION['flash']);
 
 <div class="news">
     <h3>
-        <?php echo htmlspecialchars($billet->titre()); ?>
+        <?php echo htmlspecialchars($billet->title()); ?>
         <br />
         <div class="date">le <?= $billet->dateModification(); ?></div>
     </h3>
     <p>
-    <?php      // On affiche le contenu du billet
-         echo nl2br(htmlspecialchars($billet->contenu())); 
+    <?php      // On affiche le content du billet
+         echo nl2br(htmlspecialchars($billet->content())); 
     ?>
     </p>
    
@@ -149,12 +141,12 @@ unset($_SESSION['flash']);
     <form method="post" action="billet.php?billet=<?php echo $_GET['billet'] ?>" method="post">
     <div class="addComment">
         <div class="addComment_name">  
-            <input type="text" name="auteur" id="auteur" placeholder="Auteur" />
-            <p class="error"><?php if(isset($error_auteur)){ echo $error_auteur; }?></p>
+            <input type="text" name="author" id="author" placeholder="Auteur" />
+            <p class="error"><?php if(isset($error_author)){ echo $error_author; }?></p>
         </div>
         <div class="addComment_com"  >    
-            <textarea type="text" name="commentaire" id="commentaire" placeholder="Commentaire"></textarea><br />
-            <p class="error"><?php if(isset($error_commentaire)){ echo $error_commentaire; } ?></p>
+            <textarea type="text" name="comment" id="commentaire" placeholder="Commentaire"></textarea><br />
+            <p class="error"><?php if(isset($error_comment)){ echo $error_comment; } ?></p>
         </div>
         <input class="btn_submit_edit_com" type="submit" value="Envoyer" />
     </div>
@@ -168,23 +160,20 @@ unset($_SESSION['flash']);
 </thead>
   <tbody>
 
-<?php //while ($donnees = $req->fetch()) {
-foreach($comments as $comment) { ?>
+<?php foreach($comments as $comment) { ?>
 
     <tr class="btn_modif">
        
-        <td><strong><?php echo htmlspecialchars($comment->auteur());/*['auteur']);*/?></strong><br>
-        <?php echo $comment->dateCommentaire();/*['date_commentaire']*/?></td>
-        <td><?php echo nl2br(htmlspecialchars($comment->commentaire()));/*['commentaire']));*/?></td>
+        <td><strong><?php echo htmlspecialchars($comment->author());/*['author']);*/?></strong><br>
+        <?php echo $comment->datecomment();/*['date_comment']*/?></td>
+        <td><?php echo nl2br(htmlspecialchars($comment->comment()));/*['comment']));*/?></td>
         <td>
-        <a class="btn btn-primary_nav_edit_small" name="signaler">Signaler</a>
+        <a class="btn btn-primary_nav_edit_small" type="submit" name="signaler">Signaler</a>
         </td>     
     </tr>
    
        
-<?php
-    } // Fin de la boucle des commentaires
-?>
+<?php } // Fin de la boucle des comments?>
     </tbody>
 </div>
 

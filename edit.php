@@ -15,56 +15,42 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
     if(isset($_GET['billet']) AND !empty($_GET['billet'])) {
         // Récupération du billet
 
-    $edit = htmlspecialchars($_GET['billet']);
-    
-    $edit_billet = $bdd->prepare('SELECT id, auteur, titre, contenu FROM billet WHERE id = ?');
-    $edit_billet->execute(array($edit));
+        $edit = htmlspecialchars($_GET['billet']);
+        
+        $edit_billet = $bdd->prepare('SELECT id, author, title, content FROM billet WHERE id = ?');
+        $edit_billet->execute(array($edit));
 
-    if($edit_billet->rowCount() == 1) {
+        if($edit_billet->rowCount() == 1) {
 
-        $edit_billet = $edit_billet->fetch();
-        $edit_id = $edit_billet['id'];
-        $edit_titre = $edit_billet['titre'];
-        $edit_auteur = $edit_billet['auteur'];
-        $edit_contenu = $edit_billet['contenu'];
-
-
+            $edit_billet = $edit_billet->fetch();
+            $edit_id = $edit_billet['id'];
+            $edit_title = $edit_billet['title'];
+            $edit_author = $edit_billet['author'];
+            $edit_content = $edit_billet['content'];
 
 
-    if(isset($_POST['newauteur'], $_POST['newtitre'], $_POST['newcontenu']))
-    {
 
+
+        if(isset($_POST['newAuthor'], $_POST['newTitle'], $_POST['newContent']))
+        {   
+            $newAuthor = htmlspecialchars($_POST['newAuthor']);
+            $newTitle = htmlspecialchars($_POST['newTitle']);
+            $newContent = htmlspecialchars($_POST['newContent']);
 
         
-        $newAuteur = htmlspecialchars($_POST['newauteur']);
-        $newTitre = htmlspecialchars($_POST['newtitre']);
-        $newContenu = htmlspecialchars($_POST['newcontenu']);
+            $paul = new Billet(array(
+                'author' => $newAuthor,
+                'title' => $newTitle,
+                'content' => $newcontent,
+                'id' => $_GET['billet']
+            ));
+            $pierre = new BilletManager();
+            $pierre->update($paul);
 
-       
-        $paul = new Billet(array(
-            'auteur' => $newAuteur,
-            'titre' => $newTitre,
-            'contenu' => $newContenu,
-            'id' => $_GET['billet']
-        ));
-        $pierre = new BilletManager();
-        $pierre->update($paul);
 
-       
-      /*  $insertnew = $bdd->prepare("UPDATE billet SET auteur = :auteur, titre = :titre, contenu = :contenu, date_modification = NOW() WHERE id = :id");
-        $insertnew->execute(array(
-            'auteur' => $newAuteur,
-            'titre' => $newTitre,
-            'contenu' => $newContenu,
-            'id' => $_GET['billet']
-        ));*/
-
+        header('Location: editbillet.php?id='.$_GET['billet']);
+        } 
         
-
-
-       header('Location: editbillet.php?id='.$_GET['billet']);
-    } 
-    
 
     }
 
@@ -76,7 +62,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="projet4.css" rel="stylesheet" />
+    <link href="public/projet4.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <title>Modifier votre billet</title>
 </head>
@@ -96,9 +82,9 @@ $bdd = new PDO('mysql:host=localhost;dbname=p4;charset=utf8', 'root', 'Dj253kolo
         <br>
 
         <form method="POST" action="edit.php?billet=<?= $edit_billet['id'] ?>">
-            <input type="text" name="newauteur" placeholder="" value="<?= $edit_billet['auteur'] ?>"><br><br><br>
-            <textarea class="story" type="text" name="newtitre" rows="3" cols="110" placeholder=""><?= $edit_billet['titre'] ?></textarea><br><br><br>
-            <textarea class="story" type="text" name="newcontenu" rows="50" cols="140" placeholder=""><?= $edit_billet['contenu'] ?></textarea><br>
+            <input type="text" name="newauthor" placeholder="" value="<?= $edit_billet['author'] ?>"><br><br><br>
+            <textarea class="story" type="text" name="newtitle" rows="3" cols="110" placeholder=""><?= $edit_billet['title'] ?></textarea><br><br><br>
+            <textarea class="story" type="text" name="newcontent" rows="50" cols="140" placeholder=""><?= $edit_billet['content'] ?></textarea><br>
             
             <br><br><br>
             <input  class="btn_submit_edit" type="submit" name="edit" value="Modifier">
