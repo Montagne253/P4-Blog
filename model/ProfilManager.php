@@ -1,24 +1,13 @@
 <?php
+require_once('model/Manager.php');
 
-class ProfilManager 
+class ProfilManager extends Manager
 {
-    private $_db;
-
-    public function __construct() 
-    {
-        try
-        {
-           $this->_db = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', 'Dj253kolo932018');
-        }
-        catch(Exception $e)
-        {
-                die('Erreur : '.$e->getMessage());
-        }
-    }
 
     public function add(Profil $profil)
     {
-        $req = $this->_db->prepare('INSERT INTO editeur (pseudo, email, pass, date_creation) VALUES(?, ?, ?, NOW())');
+        $db = $this->dbConnect();
+        $req = $db->prepare('INSERT INTO editeur (pseudo, email, pass, date_creation) VALUES(?, ?, ?, NOW())');
             
             $req->execute(array(
                 $profil->pseudo(),
@@ -30,19 +19,21 @@ class ProfilManager
 
     public function get($id) 
     {
-            $req = $this->_db->prepare('SELECT * FROM editeur WHERE id = ?');
-            $req->execute(array(
-                $id
-            ));
-            $data = $req->fetch();
-          
-            return new Profil($data);
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT * FROM editeur WHERE id = ?');
+        $req->execute(array(
+            $id
+        ));
+        $data = $req->fetch();
+        
+        return new Profil($data);
            
     }
 
     public function getPseudo($pseudo) 
     {
-        $req = $this->_db->prepare('SELECT * FROM editeur WHERE pseudo = ?');
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT * FROM editeur WHERE pseudo = ?');
             $req->execute(array(
                 $pseudo
             ));
@@ -64,8 +55,9 @@ class ProfilManager
 
     public function update(Profil $profil)
     {
+        $db = $this->dbConnect();
     
-        $req = $this->_db->prepare('UPDATE editeur SET pseudo = :pseudo, email = :email, pass = :pass, date_modification = NOW() WHERE id = :id');
+        $req = $db->prepare('UPDATE editeur SET pseudo = :pseudo, email = :email, pass = :pass, date_modification = NOW() WHERE id = :id');
         $req->execute(array(
            "pseudo" => $profil->pseudo(),
            "email" => $profil->email(),
