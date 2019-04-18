@@ -291,48 +291,34 @@ class Frontend {
     {
         $billetManager = new BilletManager;
         $billet = $billetManager->get($_GET['billet']);
-
-
-        if(isset($_GET['billet']) AND !empty($_GET['billet'])) {
         
-
+        
+        
+        if(isset($_GET['billet']) AND !empty($_GET['billet'])) {
+                // Récupération du billet
             if(isset($_POST['newauteur'], $_POST['newtitre'], $_POST['newcontenu']))
             {
-            
+          
                 $newAuteur = htmlspecialchars($_POST['newauteur']);
                 $newTitre = htmlspecialchars($_POST['newtitre']);
                 $newContenu = htmlspecialchars($_POST['newcontenu']);
-
-            
+        
                 $paul = new Billet(array(
-                    'author' => $newAuteur,
-                    'title' => $newTitre,
-                    'content' => $newContenu,
+                    'auteur' => $newAuteur,
+                    'titre' => $newTitre,
+                    'contenu' => $newContenu,
                     'id' => $_GET['billet']
                 ));
                 $pierre = new BilletManager();
                 $pierre->update($paul);
-
-       
-      /*  $insertnew = $bdd->prepare("UPDATE billet SET auteur = :auteur, titre = :titre, contenu = :contenu, date_modification = NOW() WHERE id = :id");
-        $insertnew->execute(array(
-            'auteur' => $newAuteur,
-            'titre' => $newTitre,
-            'contenu' => $newContenu,
-            'id' => $_GET['billet']
-        ));*/
-            }
-
         
-
-
-        header('Location: index.php?action=edit&id='.$_GET['billet']);
-        } 
-    
-
-    
         
-        require('view/frontend/editView.php');
+               header('Location: index.php?action=editBillet');
+            } 
+
+        }
+            
+            require('view/frontend/editView.php');
     }
 
     function editProfil()
