@@ -67,7 +67,7 @@ foreach ($billets as $billet) {
         </td>
           
         <td>
-        <em><a class="btn btn-primary_nav_2" href="deleteComment.php?billet=<?php echo $billet->id(); ?>">Modérer commentaires</a></em>
+        <em><a class="btn btn-primary_nav_2" href="index.php?action=deleteComment&billet=<?php echo $billet->id(); ?>">Modérer commentaires</a></em>
         </td>
     </tr>
   </tbody>

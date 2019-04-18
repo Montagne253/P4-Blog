@@ -48,7 +48,7 @@
     ?>
     </p>
    
-    <a class="btn btn-primary_nav_edit" href="billet.php?billet=<?php echo $billet->id(); ?>">Lire la suite</a>
+    <a class="btn btn-primary_nav_edit" href="index.phpaction=billet&billet=<?php echo $billet->id(); ?>">Lire la suite</a>
  
 </div>
 
@@ -75,12 +75,12 @@
 <?php foreach ($comments as $comment) { ?>
     <tr class="btn_modif">
     
-    <td><strong><?php echo htmlspecialchars($comment->author()); ?></strong> le <?php echo $comment->dateCommentaire(); ?></td>
+    <td><strong><?php echo htmlspecialchars($comment->author()); ?></strong> le <?php echo $comment->dateComment(); ?></td>
     <td><?php echo htmlspecialchars($comment->comment()) ?></td>
     <td><?php echo htmlspecialchars($comment->signaler()) ?></td>
     <td>
         
-        <form action="deleteComment.php?billet=<?= $_GET['billet'] ?>" method="post">
+        <form action="index.php?action=deleteComment&billet=<?= $_GET['billet'] ?>" method="post">
             <input type="hidden" value="<?= $comment->id(); ?>" name="idComment">
             <input class="btn btn-primary_delete" name="delete" type="submit" value="Supprimer">
         </form>

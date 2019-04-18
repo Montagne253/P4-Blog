@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,9 +15,9 @@
 
     <br> <br>
 
-    <form method="POST" action="connexion.php">
-       <input type="pseudo" name="pseudoConnect" placeholder="pseudo">
-       <input type="password" name="passwordconnect" id="" placeholder="password">
+    <form method="POST" action="index.php?action=connexion">
+       <input required type="pseudo" name="pseudoConnect" placeholder="pseudo">
+       <input required type="password" name="passwordconnect" id="" placeholder="password">
        <input class="btn_submit_edit" type="submit" name="submitConnect" value="Connexion">
     </form>
     <br>

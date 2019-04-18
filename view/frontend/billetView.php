@@ -17,7 +17,7 @@
 
             <div class="pos-f-t">
                 <div class="collapse" id="navbarToggleExternalContent">
-                <a class="navbar-brand" href="index.php">HOME</a>
+                <a class="navbar-brand" href="index.php?action=listBillet">HOME</a>
                 </div>
                 <nav class="navbar navbar-light bg-light">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,7 +73,7 @@ unset($_SESSION['flash']);
 
 <div class="comment">
 <h4>Commentaires</h4>
-    <form method="post" action="billet.php?billet=<?php echo $_GET['billet'] ?>" method="post">
+    <form method="post" action="index.php?action=billet&billet=<?php echo $_GET['billet'] ?>" method="post">
     <div class="addComment">
         <div class="addComment_name">  
             <input type="text" name="author" id="author" placeholder="Auteur" />

@@ -14,7 +14,7 @@
     <div class="container-fluid">
             <div class="pos-f-t">
                 <div class="collapse" id="navbarToggleExternalContent">
-                <a class="navbar-brand" href="connexion.php">Admin</a>
+                <a class="navbar-brand" href="index.php?action=connexion">Admin</a>
                 </div>
                 <div class="collapse" id="navbarToggleExternalContent">
                 <a class="navbar-brand" href="index.php">HOME</a>
@@ -54,18 +54,16 @@
         <td><?php echo $billet->author(); ?></td>
         <td><?php echo $billet->dateCreation(); ?></td>
         <td>
-            <a class="btn btn-primary_nav" href="edit.php?billet=<?php echo $billet->id(); ?>">Modifier</a>
+            <a class="btn btn-primary_nav" href="index.php?action=edit&billet=<?php echo $billet->id(); ?>">Modifier</a>
         </td>   
         <td>
-            <a class="btn btn-primary_delete_nav" href="editbillet.php?billet=<?php echo $billet->id(); ?>">Supprimer</a>
+            <a class="btn btn-primary_delete_nav" href="index.php?action=editBillet&billet=<?php echo $billet->id(); ?>">Supprimer</a>
         </td>
     </tr>
   </tbody>
   
 <?php
-    } // Fin de la boucle des billets
-          
-    
+    } // Fin de la boucle des billets  
 ?>
        
 </div>

@@ -45,11 +45,7 @@
 
       <br>
 
-<?php 
-if(isset($_SESSION['id']) AND $profil->id() == $_SESSION['id'])
 
-{
-?>
 
 </div>
 <h6>ATELIER</h6>
@@ -57,30 +53,28 @@ if(isset($_SESSION['id']) AND $profil->id() == $_SESSION['id'])
   <tbody>
     <tr>
       <th class="creer" scope="row">CRÉER</th>
-      <td><a role="button" href="redaction.php" class="btn btn-primary_edit">Nouveau billet</a></td>
-      <td><a role="button" href="signin.php" class="btn btn-primary">Nouveau compte</a></td>
+      <td><a role="button" href="index.php?action=create" class="btn btn-primary_edit">Nouveau billet</a></td>
+      <td><a role="button" href="index.php?action=signin" class="btn btn-primary">Nouveau compte</a></td>
     </tr>
     <tr>
       <th class="editer" scope="row">ÉDITER</th>
-      <td><a class="btn btn-primary_edit" role="button" href="editbillet.php">Mes billets</a></td>
-      <td><a class="btn btn-primary" role="button" href="editerprofil.php">Mon profil</a></td>
+      <td><a class="btn btn-primary_edit" role="button" href="index.php?action=editBillet">Mes billets</a></td>
+      <td><a class="btn btn-primary" role="button" href="index.php?action=editProfil">Mon profil</a></td>
       
     </tr>
     <tr>
       <th class="creer" scope="row">MODÉRER</th>
-      <td><a role="button" href="editComment.php" class="btn btn-primary_edit">Commentaires</a></td>
+      <td><a role="button" href="index.php?action=editComment" class="btn btn-primary_edit">Commentaires</a></td>
     </tr>
   </tbody>
 </table>
 
 
 <div class="btn_connexion" align='center'>
-        <a class="btn btn-primary_nav_edit" role="button" href="index.php">Retour au blog</a>
-        <a class="btn btn-primary_nav_edit_redac_disco" role="button" href="deconnexion.php">Déconnexion</a>
+        <a class="btn btn-primary_nav_edit" role="button" href="index.php?action=listBillet">Retour au blog</a>
+        <a class="btn btn-primary_nav_edit_redac_disco" role="button" href="index.php?action=deconnexion">Déconnexion</a>
 
-<?php
-}
-?>
+
 </div>
 
     
@@ -91,10 +85,5 @@ if(isset($_SESSION['id']) AND $profil->id() == $_SESSION['id'])
     
 </body>
 </html>
-<?php 
-}
-else 
-{
-    header('Location: connexion.php');
-}
-?>
+
+

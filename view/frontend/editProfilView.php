@@ -41,10 +41,5 @@ unset($_SESSION['flash']);
     
 </body>
 </html>
-<?php 
-}
-else 
-{
-    header("Location: connexion.php");
-}
-?>
+
+

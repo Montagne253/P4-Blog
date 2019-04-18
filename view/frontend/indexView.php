@@ -15,7 +15,7 @@
 
         <div class="pos-f-t">
             <div class="collapse" id="navbarToggleExternalContent">
-            <a class="navbar-brand" href="connexion.php">Admin</a>
+            <a class="navbar-brand" href="index.php?action=connexion">Admin</a>
             </div>
             <nav class="navbar navbar-light bg-light">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,8 +50,8 @@
     
             <?= $resumeComment = $billet->content() ?>...
             <br />
-            <em><a href="billet.php?billet=<?= $billet->id() ?>">Commentaires</a></em>
-            <a class="btn btn-primary_nav_edit" href="billet.php?billet=<?= $billet->id() ?>">Lire la suite</a>
+            <em><a href="index.php?action=billet&billet=<?= $billet->id() ?>">Commentaires</a></em>
+            <a class="btn btn-primary_nav_edit" href="index.php?action=billet&billet=<?= $billet->id() ?>">Lire la suite</a>
 
             </p>
         </div>

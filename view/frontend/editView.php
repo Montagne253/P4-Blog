@@ -22,10 +22,10 @@
         <br>
         <br>
 
-        <form method="POST" action="edit.php?billet=<?= $edit_billet['id'] ?>">
-            <input type="text" name="newauthor" placeholder="" value="<?= $edit_billet['author'] ?>"><br><br><br>
-            <textarea class="story" type="text" name="newtitle" rows="3" cols="110" placeholder=""><?= $edit_billet['title'] ?></textarea><br><br><br>
-            <textarea class="story" type="text" name="newcontent" rows="50" cols="140" placeholder=""><?= $edit_billet['content'] ?></textarea><br>
+        <form method="POST" action="index.php?action=edit&billet=<?=  $billet->id(); ?>">
+            <input type="text" name="newauthor" placeholder="" value="<?=  $billet->author(); ?>"><br><br><br>
+            <textarea class="story" type="text" name="newtitle" rows="3" cols="110" placeholder=""><?=  $billet->title(); ?></textarea><br><br><br>
+            <textarea class="story" type="text" name="newcontent" rows="50" cols="140" placeholder=""><?=  $billet->content(); ?></textarea><br>
             
             <br><br><br>
             <input  class="btn_submit_edit" type="submit" name="edit" value="Modifier">
@@ -35,9 +35,9 @@
         <br>
         <br>
     <div class="btn_edit">
-    <a class="btn btn-primary_nav_edit" href="editbillet.php">Mes billets</a>
-    <a class="btn btn-primary_nav_edit" href="profil.php?id=<?$_SESSION['id']?>">Admin</a>
-    <a class="btn btn-primary_nav_edit" href="deconnexion.php">Se deconnecter</a>
+    <a class="btn btn-primary_nav_edit" href="index.php?action=editBillet">Mes billets</a>
+    <a class="btn btn-primary_nav_edit" href="index.php?action=profil&id=<?$_SESSION['id']?>">Admin</a>
+    <a class="btn btn-primary_nav_edit" href="index.php?action=deconnexion">Se deconnecter</a>
     </div>
 
     
@@ -57,10 +57,3 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> 
 </body>
 </html>
-<?php 
-}
-else 
-{
-    header("Location: connexion.php");
-}
-?>
