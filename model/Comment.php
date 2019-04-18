@@ -7,7 +7,7 @@ class Comment
     private $_author;
     private $_comment;
     private $_signaler;
-    private $_datecomment;
+    private $_dateComment;
     
 
     public function __construct(Array $data)
