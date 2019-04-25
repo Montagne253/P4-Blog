@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="public/projet4.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script>tinymce.init({selector: '#mytextarea'});</script>
     <title>Modifier votre billet</title>
 </head>
 <body>
@@ -25,7 +27,7 @@
         <form method="POST" action="index.php?action=edit&billet=<?=  $billet->id(); ?>">
             <input type="text" name="newauthor" placeholder="" value="<?=  $billet->author(); ?>"><br><br><br>
             <textarea class="story" type="text" name="newtitle" rows="3" cols="110" placeholder=""><?=  $billet->title(); ?></textarea><br><br><br>
-            <textarea class="story" type="text" name="newcontent" rows="50" cols="140" placeholder=""><?=  $billet->content(); ?></textarea><br>
+            <textarea class="story" type="text" id="mytextarea" name="newcontent" rows="50" cols="140" placeholder=""><?=  $billet->content(); ?></textarea><br>
             
             <br><br><br>
             <input  class="btn_submit_edit" type="submit" name="edit" value="Modifier">

@@ -6,6 +6,8 @@
     <link href="public/projet4.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link href="public/style.css" rel="stylesheet" />
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script>tinymce.init({selector: '#mytextarea'});</script>
     <title>Billet</title>
 </head>
 
@@ -53,7 +55,7 @@ unset($_SESSION['flash']);
     </h3>
     <p>
     <?php      // On affiche le content du billet
-         echo nl2br(htmlspecialchars($billet->content())); 
+        echo $billet->content(); 
     ?>
     </p>
    
