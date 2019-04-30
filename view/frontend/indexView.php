@@ -1,71 +1,72 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <title>Jean Laroche | Blog des écrivains</title>
-    <link href="public/projet4.css" rel="stylesheet" /> 
-    <link href="public/style.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    </head>
-
-<body>
-      
-<header>
-    <div class="container-fluid">
-
-        <div class="pos-f-t">
-            <div class="collapse" id="navbarToggleExternalContent">
-            <a class="navbar-brand" href="index.php?action=connexion">Admin</a>
-            </div>
-            <nav class="navbar navbar-light bg-light">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="title">
-                    <h1>JEAN FORTEROCHE | ÉCRIVAIN.</h1>
-                    <p>Bienvenue sur mon blog !</p>
-                </div>
-            </nav>
-        </div>
-    </div>
-                
-</header>
-    <br>
-<h3>Les derniers billets</h3>
-    <!--Bllog/Billets  -->
-<section class="billet" id="billet">
-
-    <div class="billet__container">
-
-<?php foreach ($billets as $billet) { ?>
-
-        <div class="news">
-            <h3>
-                
-                <?= htmlspecialchars($billet->title()) ?>
-                <br />
-                <div class="date">le <?= $billet->dateCreation() ?></div>
-            </h3>
-            <p>
-    
-            <?= $resumeComment = $billet->content() ?>...
-            <br />
-            <em><a href="index.php?action=billet&billet=<?= $billet->id() ?>">Commentaires</a></em>
-            <a class="btn btn-primary_nav_edit" href="index.php?action=billet&billet=<?= $billet->id() ?>">Lire la suite</a>
-
-            </p>
-        </div>
-<?php } // Fin de la boucle des billet ?>
-
-    </div>
-
-</section>
-
+<?php $title = 'Jean Laroche | Blog des écrivains'; ?>
+<?php $header = require('header.php'); ?>
+<?php ob_start(); ?>
+<div class="bd-example">
+  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="public/img/alaska.png" class="d-block w-100" alt="...">
         
+        <div class="carousel-caption d-none d-md-block">
+          <h5>First slide label</h5>
+          <a class="btn btn-primary" href="index.php?action=connexion">Admin</a>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="public/img/alaska.png" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Second slide label</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="public/img/alaska.png" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Third slide label</h5>
+          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+<br>
+<br>
+<br>
+
+<h5>Les derniers billets</h5>
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>   
-</body>
-</html>
+<div class="container-fluid">
+<?php foreach ($billets as $billet) { ?>
+    <div class="news">
+        <h3>
+            <?= $billet->title()  ?>
+            <em>le <?= $billet->dateCreation()?></em>
+        </h3>
+            <?= $resumeComment = $billet->content() ?>
+            <a class="btn btn-primary_nav_edit" href="index.php?action=billet&billet=<?= $billet->id() ?>">Lire la suite</a>
+            <em><a href="index.php?action=billet&billet=<?= $billet->id() ?>">Commentaires</a></em>   
+    </div>
+<?php
+}
+
+?>
+</div>
+<?php $footer = require('footer.php'); ?>
+<?php $content = ob_get_clean(); ?>
+
+<?php require('template.php'); ?>

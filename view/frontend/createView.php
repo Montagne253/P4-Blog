@@ -1,15 +1,6 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="public/projet4.css" rel="stylesheet" />
-    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-    <script>tinymce.init({selector: '#mytextarea'});</script>
-    
-    <title>Créer un nouveau billet</title>
-</head>
-<body>
+<?php $title = 'ADMIN' ?>
+<?php $header = require('header.php'); ?>
+<?php ob_start(); ?>
 <?php  if(isset($_SESSION['flash'])) { 
     $flash = $_SESSION['flash'];
     
@@ -34,7 +25,7 @@ unset($_SESSION['flash']);
 
         <form method="POST" action="index.php?action=create">
             <input type="text" name="author" placeholder="auteur"><br> <p><?php if(isset($error_auteur)){ echo '<font color="red">' . $error_auteur . "</font>"; }?></p><br><br>
-            <input type="text" name="title" rows="3" cols="110" placeholder="Titre...."></textarea><br><p><?php if(isset($error_titre)){ echo '<font color="red">' . $error_titre . "</font>"; }?></p><br><br><br>
+            <input type="text" name="title" rows="3" cols="110" placeholder="Titre...."/><br><p><?php if(isset($error_titre)){ echo '<font color="red">' . $error_titre . "</font>"; }?></p><br><br><br>
             <textarea class="story" type="text" id="mytextarea" name="content" rows="50" cols="140" placeholder="Mon histoire..."></textarea><br><p><?php if(isset($error_contenu)){ echo '<font color="red">' . $error_contenu . "</font>"; }?></p><br><br><br>
             
             <input  class="btn_submit_edit" type="submit" name="submitedit" value="Editer">
@@ -67,12 +58,8 @@ unset($_SESSION['flash']);
 unset($_SESSION['flash']);
 ?>
     
-    
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> 
+<?php $footer = require('footer.php'); ?>
+<?php $content = ob_get_clean(); ?>
 
 
-    
-</body>
-</html>
+<?php require('template.php'); ?>
