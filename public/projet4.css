@@ -25,14 +25,13 @@ body {
 ====================================*/
 
 
-
+/*
 .header {
 	z-index: 50;
 	position: fixed;
 	top: 0;
 	width: 100%;
 	height: 100px;
-	background-color:rgb(26, 23, 23);
 }
 
 .header__element {
@@ -52,13 +51,7 @@ body {
 	
 }
 
-
-
-.ecriture {
-	background-image: url('projet4/img/ecriture.jpeg') ;
-	width: 50%;
-	height: 50%;
-}
+*/
 
 /* webkit solution */
 ::-webkit-input-placeholder
@@ -87,7 +80,7 @@ input:-moz-placeholder
 .addComment {
 	padding: 50px;
 }
-/*
+
 .addComment_name {
 	padding-left: 20px;
 	display: inline;
@@ -98,7 +91,7 @@ input:-moz-placeholder
 	margin-left: 20px;
 	width: 700px !important;
 }
-*/
+
 
 h1, h3
 {
@@ -117,17 +110,19 @@ h4 {
 h5 {
 	font-size: 20px;
 	text-align: center;
-	color: #1a1818ad;
+	color: #2451b9 !important;
 }
 
-#commentaire {
+.commentaire {
 	height: 150px;
-	width: 80%;
+	width: auto;
 	padding: 15px;
+	color: #2451b9 !important;
 }
 
-#auteur {
+.auteur {
 	width: 20%;
+	color: #2451b9 !important;
 }
 
 .comment h5 {
@@ -142,24 +137,16 @@ h5 {
 }
 
 .comment p {
-	color: #000;
+	color: #fff;
 	margin-top: 10px;
 	font-size: 18px;
-	margin-left: 45px !important;
+	
 	text-align: left !important;
 	text-align: center;
 }
 
 
-.news p
-{
-	background-color:#081b22;
-	color: rgb(29, 28, 28);
-	margin-top:0px;
-	font-size: 18px;
-	padding: 10px;
-	text-align: center;
-}
+
 
 .date {
 	font-size: 15px;
@@ -203,11 +190,10 @@ li {
 a {
 	display: block;
 	font-size: 16px;
-	color: #2451b9 !important;
+	color: #E8790C !important;
 	text-decoration: none;
 	border: none;
 	outline: none;
-	
 }
 
 img {
@@ -215,19 +201,17 @@ img {
 	outline: none;
 	display: block;
 }
-
+/*
 section {
 	box-sizing: border-box;
 	width: 100%;
-}
+}*/
 
 
 
 h1, h2 {
 	padding: 15px;
-	
 	color: rgb(31, 106, 177);
-	
 }
 
 h2 { 
@@ -253,6 +237,7 @@ label {
 h6 {
 	font-size: 30px !important;
 	text-align: center;
+	width: 100%;
 	background-color: #2451b9 !important;
 	color: #eef0f1 !important;
 	margin: none !important;
@@ -260,25 +245,22 @@ h6 {
 	padding: 15px !important;
 }
 
-
-th {
-	padding-right: 0 !important;
-	width: 20% !important;
-	padding: 30px !important;
-	padding-left: 290px !important;
-	
-	border-top: 1px solid #37393f !important;
-	border-bottom: 1px solid #37393f !important;
-
+ul {
+	margin: 0px;
+	padding: 0px;
 }
 
-td {
-	padding-right: 0 !important;
-	width: 20% !important;
-	padding: 30px !important;
-	
-	/*border-top: 1px solid #37393f !important;
-	border-bottom: 1px solid #37393f !important;*/
+li {
+	list-style: none;
+}
+
+a {
+	display: block;
+	font-size: 16px;
+	color: #838588 !important;
+	text-decoration: none;
+	border: none;
+	outline: none;
 }
 
 
@@ -287,7 +269,7 @@ td {
 =            HOME FORM            =
 ====================================*/
 
-
+/*
 
 .home
 {
@@ -307,7 +289,7 @@ td {
     background-position: center;
     background-size: cover;
 }
-
+*/
 
 
 
@@ -325,11 +307,11 @@ td {
 
 .btn-primary {
 	background-color: #f1f5f6 !important;
-	width: 65% !important;
+	width: auto;
 	border: 1px solid #272829 !important;
 	color: #000 !important;
 	font-weight: bold !important;
-
+	cursor: pointer;
 }
 
 .btn-primary_delete {
@@ -516,9 +498,7 @@ td {
 	margin-left: 26%;
 }
 
-.btn_connexion {
-	margin-left: 0;
-}
+
 
 .btn_edit_profil {
 	margin-left: 775px;
@@ -637,10 +617,7 @@ td {
 	color: rgb(34, 117, 185) !important;
 }
 
-.img_edit {
-	margin-left: 530px;
-	
-}
+
 
 
 .navigation__link:hover {
@@ -757,9 +734,7 @@ opacity: 0.5;
 =         Acceuil FORM           =
 ====================================*/
 
-.creer th {
-	padding-left: 150px !important;
-}
+
 
 
 
@@ -770,10 +745,7 @@ opacity: 0.5;
 ====================================*/
 
 
-.auteur th {
-	width: 10%;
 
-}
 
 
 
@@ -814,6 +786,72 @@ opacity: 0.5;
 =            MEDIA QUERIES         =
 ==================================*/
 
+body {
+    margin: 0;
+    width: 100%;
+	font-family: 'Roboto Condensed', sans-serif;
+	background-color: #f1f1f1;
+	color: #fff;
+}
 
+/* webkit solution */
+::-webkit-input-placeholder
+
+{ 
+	text-align:center; 
+}
+/* mozilla solution */
+input:-moz-placeholder 
+{
+	 text-align:center; 
+}
+
+
+/* h1, h2, h3 ... */
+h1, h3
+{
+    text-align:center;
+}
+
+h3
+{
+    background-color:#244370 ;
+    color: #fff;
+    font-size: 20px;
+	margin: 10px;
+	padding: 15px;
+	font-weight: bold;
+    border-radius: 3px;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+
+.news p
+{
+    background-color:#0a1a33;
+    color: #fff;
+    margin-top:0px;
+    padding-top: 40px;
+    padding: 15px;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+.news
+{
+    width: 80%;
+    margin:auto;
+    margin-top: 100px;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+
+
+.billet__container
+{
+	width: 100%;
+	height: 65vh;
+	padding-top: 50px;
+	text-align: center;
+		
+}
 
 
