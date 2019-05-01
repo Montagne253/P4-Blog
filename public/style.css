@@ -1,52 +1,32 @@
-h1, h3
-{
-    text-align:center;
-}
-
-h3
-{
+#arrow {
     
-    background-color:#f4f6f9 ;
-    color: #242525;
-    font-size: 20px;
-	margin: 10px;
-	padding: 15px;
-	font-weight: bold;
-    border-radius: 3px;
-    font-family: 'Roboto Condensed', sans-serif;
-}
-
-
-.news p
-{
-    background-color:#f4f6f9;
-    color: rgb(27, 24, 24);
-    margin-top:0px;
-    padding-top: 40px;
-    padding: 15px;
-    font-family: 'Roboto Condensed', sans-serif;
-    
-}
-.news
-{
-    width: 70%;
-    margin:auto;
-    margin-top: 100px;
-    font-family: 'Roboto Condensed', sans-serif;
-}
-
-a
-{
     margin-top: 20px;
-    text-decoration: none;
-    color:  rgb(2, 6, 8);
+    color: #fff;
 }
 
-.billet__container
-	{
-		width: 100%;
-		height: 65vh;
-		padding-top: 50px;
-		text-align: center;
-		
-	}
+#arrow:hover {
+    
+    color: #1e87a7;
+}
+
+#tools {
+    color: #fff;
+}
+
+
+
+.date {
+    font-size: 16px !important;
+}
+
+/* webkit solution */
+::-webkit-input-placeholder
+
+{ 
+	text-align:center !important; 
+}
+/* mozilla solution */
+input:-moz-placeholder 
+{
+	 text-align:center !important; 
+}
