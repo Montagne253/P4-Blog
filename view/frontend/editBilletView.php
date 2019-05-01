@@ -1,7 +1,7 @@
 <?php $title = 'ADMIN' ?>
-<?php $header = require('header.php'); ?>
+<?php  require('nav.php'); ?>
+<?php  require('header.php'); ?>
 <?php ob_start(); ?>
-
 
 <div class="container-fluid">
 

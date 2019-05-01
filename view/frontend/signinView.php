@@ -1,14 +1,27 @@
 <?php $title = 'Jean Laroche | Blog des écrivains'; ?>
-<?php $header = require('header.php'); ?>
+<?php require('nav.php'); ?>
+<div class="container-full">
+<header class="masthead" style="background-image: url('public/img/profil.png')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+          <h2>Inscription</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+</header>
+</div>
 <?php ob_start(); ?>
 
 <div class="container" align="center">
-    <h2>Inscription</h2>
     <form method="POST" action="index.php?action=signin">
-        <input type="pseudo" name="pseudo" id="" placeholder="pseudo" value="<?php if(isset($pseudo)) { echo $pseudo; } ?>"><br><br>
-        <input type="email" name="email" id="" placeholder="email" value="<?php if(isset($email)) { echo $email; } ?>"><br><br>
-        <input type="password" name="password" id="" placeholder="password"><br><br>
-        <input type="password" name="confirm_password" id="" placeholder="confirm password"><br><br>
+        <input required type="pseudo" name="pseudo" id="" placeholder="pseudo" value="<?php if(isset($pseudo)) { echo $pseudo; } ?>"><br><br>
+        <input required type="email" name="email" id="" placeholder="email" value="<?php if(isset($email)) { echo $email; } ?>"><br><br>
+        <input required type="password" name="password" id="" placeholder="password"><br><br>
+        <input required type="password" name="confirm_password" id="" placeholder="confirm password"><br><br>
         <input class="btn_submit_edit" type="submit" name="signin" value="Créer son compte"><br><br>
     </form>
 
@@ -32,7 +45,7 @@ unset($_SESSION['flash']);
 <div class="btn_signin">
 <a class="btn btn-primary" href="index.php?action=connexion">Se connecter</a>
 
-<div>
+</div>
 <br>
 <br>
 <a class="btn btn-primary" href="index.php">Retour au blog</a>
@@ -41,6 +54,7 @@ unset($_SESSION['flash']);
   
 </div>
 
+<?php require('footer.php'); ?>
 
 <?php $content = ob_get_clean(); ?>
 

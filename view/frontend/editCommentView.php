@@ -1,5 +1,6 @@
 <?php $title = 'ADMIN' ?>
-<?php $header = require('header.php'); ?>
+<?php  require('nav.php'); ?>
+<?php  require('header.php'); ?>
 <?php ob_start(); ?>
 
 
@@ -13,7 +14,6 @@
         <td scope="col" >Titre</td>
         <td scope="col" >Date</td>
         <td scope="col" >Auteur</td>
-        <td scope="col" >Billet</td>
         <td></td>
     </tr>
 </thead>
@@ -21,17 +21,15 @@
     
 <?php
 foreach ($billets as $billet) {
-    //while ($donnees = $req->fetch())?>
+    $content = $billet->content();
+    $resumeContent = substr($content, 0, 50);
+?>
 
 
     <tr>
         <td scope="row"><?= $billet->title() ?></td>
         <td><?= $billet->dateCreation() ?></td>
         <td><?= $billet->author() ?></td>
-        <td>
-        <?= $resumeComment = $billet->content() ?>...
-        </td>
-          
         <td>
         <em><a class="btn btn-primary" href="index.php?action=deleteComment&billet=<?php echo $billet->id(); ?>">Modérer commentaires</a></em>
         </td>

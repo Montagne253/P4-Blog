@@ -1,5 +1,20 @@
 <?php $title = 'ADMIN' ?>
-<?php $header = require('header.php'); ?>
+<?php $header = require('nav.php'); ?>
+<div class="container-full">
+<header class="masthead" style="background-image: url('public/img/profil.png')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h2>Créer un nouveau billet</h2>
+            <a href="#down" aria-label="Flêche vers le bas" ><i class="fas fa-arrow-circle-down fa-w-12 fa-2x" id="arrow"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+</header>
+</div>
 <?php ob_start(); ?>
 <?php  if(isset($_SESSION['flash'])) { 
     $flash = $_SESSION['flash'];
@@ -14,7 +29,7 @@
 unset($_SESSION['flash']);
 ?>
     <div align="center">
-        <h2>Créer un nouveau billet</h2>
+        
 
         <?php 
         if(isset($error))
@@ -23,9 +38,9 @@ unset($_SESSION['flash']);
         }
         ?>
 
-        <form method="POST" action="index.php?action=create">
-            <input type="text" name="author" placeholder="auteur"><br> <p><?php if(isset($error_auteur)){ echo '<font color="red">' . $error_auteur . "</font>"; }?></p><br><br>
-            <input type="text" name="title" rows="3" cols="110" placeholder="Titre...."/><br><p><?php if(isset($error_titre)){ echo '<font color="red">' . $error_titre . "</font>"; }?></p><br><br><br>
+        <form method="POST" action="index.php?action=create" id="down">
+            <input required type="text" name="author" placeholder="auteur"><br> <p><?php if(isset($error_auteur)){ echo '<font color="red">' . $error_auteur . "</font>"; }?></p>
+            <input required type="text" name="title" rows="3" cols="110" placeholder="Titre...."/><br><p><?php if(isset($error_titre)){ echo '<font color="red">' . $error_titre . "</font>"; }?></p>
             <textarea class="story" type="text" id="mytextarea" name="content" rows="50" cols="140" placeholder="Mon histoire..."></textarea><br><p><?php if(isset($error_contenu)){ echo '<font color="red">' . $error_contenu . "</font>"; }?></p><br><br><br>
             
             <input  class="btn_submit_edit" type="submit" name="submitedit" value="Editer">

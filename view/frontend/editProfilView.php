@@ -1,14 +1,15 @@
 <?php $title = 'ADMIN' ?>
-<?php $header = require('header.php'); ?>
+<?php  require('nav.php'); ?>
+<?php  require('header.php'); ?>
 <?php ob_start(); ?>
 
     <div align="center">
         <h2>Editer mon profil</h2>
         <form method="POST" action="">
-            <input type="text" name="newpseudo" placeholder="pseudo" value="<?php echo $profil->pseudo(); ?>" /><br><br>
-            <input type="email" name="newemail" placeholder="email" value="<?php echo $profil->email(); ?>"/><br><br>
-            <input type="password" name="newmdp" placeholder="new password"/><br><br>
-            <input type="password" name="confirmnewmdp" placeholder="confirm new password" /><br><br>
+            <input required type="text" name="newpseudo" placeholder="pseudo" value="<?php echo $profil->pseudo(); ?>" /><br><br>
+            <input required type="email" name="newemail" placeholder="email" value="<?php echo $profil->email(); ?>"/><br><br>
+            <input required type="password" name="newmdp" placeholder="new password"/><br><br>
+            <input required type="password" name="confirmnewmdp" placeholder="confirm new password" /><br><br>
             <input class="btn_submit_edit" type="submit"  value="Enregistrer" /><br><br>
         </form>
 

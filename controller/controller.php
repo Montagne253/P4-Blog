@@ -1,18 +1,30 @@
 <?php 
 
 
-class Frontend {
+class Controller {
 
 
 
     function listBillet()
     {
+
         $billetManager = new BilletManager;
         $billets = $billetManager->getList();
 
         require('view/frontend/indexView.php');
         
     }
+
+    function allBillet()
+    {
+
+        $billetManager = new BilletManager;
+        $billets = $billetManager->getListMod();
+
+        require('view/frontend/listBilletView.php');
+        
+    }
+
 
     function comment()
     {
@@ -36,11 +48,15 @@ class Frontend {
 
             $commentManager = new CommentManager;
             $comment = $commentManager->delete($_POST['idComment']);
-        
 
+            $_SESSION['flash'] = "Votre commentaire a bien été supprimé !";
+        
+           
             
             header('Location: index.php?action=deleteComment&billet='.$_GET['billet']);
             exit();
+
+            
         
         }
 
@@ -152,36 +168,25 @@ class Frontend {
                             if(strlen($pseudo) <= 20) {
                                 
 
-                            } else 
-                            {
+                            } else {
                                 $error = 'Votre pseudo ne doit pas dépasser 20 caractéres !';
                             }
 
                             if(filter_var($email, FILTER_VALIDATE_EMAIL)) 
                             {
-                            
-
+                        
                                 if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email']))
                                 {  
-                                }
-                                else
-                                {
+                                } else {
                                     $error = 'L\'adresse ' . $_POST['email'] . ' n\'est pas valide, recommencez !';
                                 }
-
-                                
 
 
                                 if($password == $confirm_password) 
                                 {
                                     $hash_password = password_hash($password, PASSWORD_BCRYPT);
                                     
-                                /* $req = $db->prepare('INSERT INTO editeur (pseudo, email, pass, date_creation) VALUES(?, ?, ?, NOW())');
-                                    $req->execute(array(
-                                        $pseudo,
-                                        $email,
-                                        $hash_password,
-                                        ));*/
+                            
                                         $newUser = new Profil([
                                             'pseudo' => $_POST['pseudo'],
                                             'email' => $_POST['email'],
@@ -189,26 +194,18 @@ class Frontend {
                                         ]);
                                         $ProfilManager = new ProfilManager;
                                         $profilManager->add($newUser);
-                                        //$ProfilManager = new ProfilManager;
-                                        //$user = $ProfilManager->add($password);
+                                       
                                     
                                     $_SESSION['flash'] = "Votre compe à été créé !";
                                     header('Location: index.php?action=connexion');
                                 
-                                    
-                                    //header('Location: signin.php');
-                                        
-                                } else 
-                                {
+                                     
+                                } else {
                                     $error = "Vos mots de passes ne correspondent pas !";
                                 }
-                                
-                                
+                                   
                             }
-                    }
-
-                    else 
-                    {
+                    } else {
                             $error = "Tous les champs doivent être complétés";
                     }
                 }
@@ -255,7 +252,7 @@ class Frontend {
                 $_SESSION['flash'] = "Votre billet à bien été créé !";
                
                 // Redirection du visiteur vers la page des billlets
-                //header('Location: billet.php');
+                header('Location: index.php?action=listBillet');
             }
 
             
@@ -289,36 +286,41 @@ class Frontend {
 
     function edit()
     {
-        $billetManager = new BilletManager;
-        $billet = $billetManager->get($_GET['billet']);
-        
-        
-        
-        if(isset($_GET['billet']) AND !empty($_GET['billet'])) {
-                // Récupération du billet
-            if(isset($_POST['newauteur'], $_POST['newtitre'], $_POST['newcontenu']))
-            {
-          
-                $newAuteur = htmlspecialchars($_POST['newauteur']);
-                $newTitre = htmlspecialchars($_POST['newtitre']);
-                $newContenu = htmlspecialchars($_POST['newcontenu']);
-        
-                $paul = new Billet(array(
-                    'auteur' => $newAuteur,
-                    'titre' => $newTitre,
-                    'contenu' => $newContenu,
-                    'id' => $_GET['billet']
-                ));
-                $pierre = new BilletManager();
-                $pierre->update($paul);
-        
-        
-               header('Location: index.php?action=editBillet');
-            } 
 
-        }
+    $billetManager = new BilletManager;
+    $billet = $billetManager->get($_GET['billet']);
+
+
+    if(isset($_GET['billet']) AND !empty($_GET['billet'])) {
+        
+
+        if(isset($_POST['newauthor'], $_POST['newtitle'], $_POST['newcontent']))
+        {            
+            $newAuthor = $_POST['newauthor'];
+            $newTitle = $_POST['newtitle'];
+            $newContent = $_POST['newcontent'];
+
+        
+            $paul = new Billet(array(
+                'author' => $newAuthor,
+                'title' => $newTitle,
+                'content' => $newContent,
+                'id' => $_GET['billet']
+            ));
+            $pierre = new BilletManager();
+            $pierre->update($paul);
+
             
-            require('view/frontend/editView.php');
+
+        header('Location: index.php?action=editBillet&id='.$_GET['billet']);
+        exit();
+
+        } 
+
+    }
+
+        require('view/frontend/editView.php');
+
     }
 
     function editProfil()
@@ -417,6 +419,15 @@ class Frontend {
         require('view/frontend/connexionView.php');
     }
 
+    function about() {
+        require('view/frontend/aboutView.php');
+    }
+
+    function error()
+    {
+        require('view/frontend/errorView.php');
+    }
+
     function deconnexion()
     {
         session_start();
@@ -429,8 +440,6 @@ class Frontend {
 
         require('view/frontend/connexionView.php');
     }
-
-   
 
 }
 

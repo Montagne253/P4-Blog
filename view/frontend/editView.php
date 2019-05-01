@@ -1,23 +1,19 @@
 <?php $title = 'ADMIN' ?>
-<?php $header = require('header.php'); ?>
+<?php  require('nav.php'); ?>
+<?php  require('header.php'); ?>
 <?php ob_start(); ?>
-    <div align="center">
+    <div class="container" align="center">
         <h2>Modifier votre billet</h2>
-        <br>
-        <br>
-        <br>
+      
         <?php 
         if(isset($error))
         {
             echo '<font color="red">' . $error . "</font>";
         }
         ?>
-        <br>
-        <br>
-
         <form method="POST" action="index.php?action=edit&billet=<?= $billet->id(); ?>">
-            <input type="text" name="newauthor" placeholder="" value="<?=  $billet->author(); ?>"><br><br><br>
-            <textarea class="story" type="text" id="title" name="newtitle" rows="3" cols="110" placeholder="Titre..."><?=  $billet->title(); ?></textarea><br><br><br>
+            <input required type="text" name="newauthor" placeholder="" value="<?=  $billet->author(); ?>"><br><br><br>
+            <input required class="story" type="text" id="title" name="newtitle" rows="3" cols="110" placeholder="Titre..."><?=  $billet->title(); ?></textarea><br><br><br>
             <textarea class="story" type="text" id="mytextarea" name="newcontent" rows="50" cols="140" placeholder=""><?=  $billet->content(); ?></textarea><br>
             
             <br><br><br>

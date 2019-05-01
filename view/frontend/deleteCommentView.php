@@ -1,6 +1,6 @@
 <?php $title = 'ADMIN' ?>
-<?php $header = require('header.php'); ?>
-<?php $footer = require('footer.php'); ?>
+<?php  require('nav.php'); ?>
+<?php  require('header.php'); ?>
 <?php ob_start(); ?>
 <?php  if(isset($_SESSION['flash'])) { 
     $flash = $_SESSION['flash'];
@@ -14,65 +14,52 @@
 } 
 unset($_SESSION['flash']);
 ?>
-<br>
-
-
-
-<br>
-<div class="news">
+<br><br>
+<div class="container" align="center">
     <h3>
         <?php echo $billet->title(); ?>
-        <br />
         <div class="date">le <?= $billet->dateModification(); ?></div>
     </h3>
-    <?php      // On affiche le content du billet
-         echo $billet->content(); 
-    ?>
-    <a class="btn btn-primary" href="index.php?action=billet&billet=<?php echo $billet->id(); ?>">Lire la suite</a>
+       <br>
+    <a class="btn btn-primary" href="index.php?action=billet&billet=<?php echo $billet->id(); ?>">Lire le billet</a>
  
-</div>
+    <br><br><br><br>
 
 
-    
-</div>
-<div class="comment">
-<h4>Commentaires</h4>
-<div class="container-fluid">
+    <h4>Modération des commentaires</h4>
+    <br><br>
+    <div class="container">
 
 
-<table class="table table-hover table-dark">
-<thead>
-<tr class="header_tab">
-        <td scope="col" class="auteur">Auteur</td>
-        <td scope="col" class="date">Commentaire</td>
-        <td scope="col" class="date">Signalement</td>
-        <td scope="col" class="supp">Suppression</td>
-</tr>
-</thead>
-  <tbody>
-    
-
-<?php foreach ($comments as $comment) { ?>
-    <tr class="btn_modif">
-    
-    <td><strong><?php echo $comment->author(); ?></strong> le <?php echo $comment->dateComment(); ?></td>
-    <td><?php echo $comment->comment() ?></td>
-    <td><?php echo $comment->signaler() ?></td>
-    <td>
-        
-        <form action="index.php?action=deleteComment&billet=<?= $_GET['billet'] ?>" method="post">
-            <input type="hidden" value="<?= $comment->id(); ?>" name="idComment">
-            <input class="btn btn-primary" name="delete" type="submit" value="Supprimer">
-        </form>
-        
-    </td>
+    <table class="table table-hover table-dark">
+    <thead>
+    <tr class="header_tab">
+            <td scope="col" class="auteur">Auteur</td>
+            <td scope="col" class="date">Commentaire</td>
+            <td scope="col" class="date">Signalement</td>
+            <td scope="col" class="supp">Suppression</td>
     </tr>
-    
-    <?php } // Fin de la boucle des commentaires?>
+    </thead>
+    <tbody>
+    <?php foreach ($comments as $comment) { ?>
+        <tr class="btn_modif">
+        
+        <td><strong><?php echo $comment->author(); ?></strong> le <?php echo $comment->dateComment(); ?></td>
+        <td><?php echo $comment->comment() ?></td>
+        <td><?php echo $comment->signaler() ?></td>
+        <td>
+            
+            <form action="index.php?action=deleteComment&billet=<?= $_GET['billet'] ?>" method="post">
+                <input type="hidden" value="<?= $comment->id(); ?>" name="idComment">
+                <input class="btn btn-primary" name="delete" type="submit" value="Supprimer">
+            </form>
+            
+        </td>
+        </tr>
+        
+        <?php } // Fin de la boucle des commentaires?>
+    </div>
 </div>
-
-
-
 
 <?php $content = ob_get_clean(); ?>
 
