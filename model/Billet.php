@@ -37,9 +37,9 @@ class Billet
         {
             $this->setDateCreation($data['date_creation_fr']);
         }
-        if(isset($data['date_modification']))
+        if(isset($data['date_modification_fr']))
         {
-            $this->setDateModification($data['date_modification']);
+            $this->setDateModification($data['date_modification_fr']);
         }
     }
 

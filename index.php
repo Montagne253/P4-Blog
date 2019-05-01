@@ -10,68 +10,76 @@ require "model/Comment.php";
 require "model/ProfilManager.php";
 require "model/Profil.php";
 
-require('controller/frontend.php');
+require('controller/controller.php');
 
-$frontend = new Frontend;
+$controller = new controller;
 //$backend = new Backend;
 
 
 try { 
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'listBillet') {
-            $frontend->listBillet();
+            $controller->listBillet();
         } elseif ($_GET['action'] == 'billet')
         { 
-            $frontend->billet();
+            $controller->billet();
         }
         elseif ($_GET['action'] == 'connexion') 
         {
-            $frontend->connexion();
+            $controller->connexion();
         }
         elseif ($_GET['action'] == 'profil')
         {
-            $frontend->profil();
+            $controller->profil();
         }
         elseif ($_GET['action'] == 'create')
         {
-            $frontend->create();
+            $controller->create();
         }
         elseif ($_GET['action'] == 'deconnexion')
         {
-            $frontend->deconnexion();
+            $controller->deconnexion();
         }
         elseif ($_GET['action'] == 'editComment')
         {
-            $frontend->comment();
+            $controller->comment();
         }
         elseif ($_GET['action'] == 'edit')
         {
-            $frontend->edit();
+            $controller->edit();
         }
         elseif ($_GET['action'] == 'editProfil')
         {
-            $frontend->editProfil();
+            $controller->editProfil();
         }
         elseif ($_GET['action'] == 'deleteComment')
         {
-            $frontend->deleteComment();
+            $controller->deleteComment();
         }
         elseif ($_GET['action'] == 'editBillet')
         {
-            $frontend->editBillet();
+            $controller->editBillet();
         }
         elseif ($_GET['action'] == 'signin')
         {
-            $frontend->signin();
+            $controller->signin();
+        }
+        elseif ($_GET['action'] == 'about')
+        {
+            $controller->about();
+        }
+        elseif ($_GET['action'] == 'allBillet')
+        {
+            $controller->allBillet();
         }
        
     
     }
     else {
-            $frontend->listBillet();
+            $controller->listBillet();
     }
 }
-catch(Exception $e) { // S'il y a eu une erreur, alors...
+catch(Exception $e) { 
     echo 'Erreur : ' . $e->getMessage();
     require('view/errorView.php');
 }

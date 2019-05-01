@@ -3,9 +3,6 @@ require_once("model/Manager.php");
 
 class BilletManager extends Manager
 {
-    
-
- 
 
     public function add(Billet $billet)
     {
@@ -22,7 +19,7 @@ class BilletManager extends Manager
     public function get($id) 
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, author, title, content, DATE_FORMAT(date_modification, \'%d/%m/%Y à %Hh%imin%ss\') AS date_modification FROM billet WHERE id = ?');
+        $req = $db->prepare('SELECT id, author, title, content, DATE_FORMAT(date_modification, \'%d/%m/%Y à %Hh%imin%ss\') AS date_modification_fr FROM billet WHERE id = ?');
         $req->execute(array(
             $id
         ));
@@ -65,6 +62,14 @@ class BilletManager extends Manager
         $req->execute([
             $id
         ]);
+        
+        $req = $db->prepare('DELETE FROM comment WHERE id_billet = ?');
+        $req->execute([
+            $id
+        ]);
+       
+
+        
     }
 
     public function update(Billet $billet) 

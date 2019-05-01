@@ -47,10 +47,12 @@ class CommentManager extends Manager
         ]);
     }
 
-    public function update()
+    /*public function update()
     {
+        $db  = $this->dbConnect();
+        $req = $db->prepare('UPDATE FROM ')
         
-    }
+    }*/
     
 
     
