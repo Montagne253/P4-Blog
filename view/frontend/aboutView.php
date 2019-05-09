@@ -12,7 +12,8 @@
           <div class="site-heading">
             <h1>Jean Forteroche</h1>
             <span class="subheading">Aliquam convallis sollicitudin purus. Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl.</span>
-            <a href="#down" aria-label="Flêche vers le bas" ><i class="fas fa-arrow-circle-down fa-w-16 fa-3x" id="arrow"></i></a>
+            <br>
+            <a href="index.php"><i class="fas fa-home fa-w-16 fa-3x" id="home"></i></a>    
           </div>
         </div>
       </div>

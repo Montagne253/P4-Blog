@@ -9,11 +9,11 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="site-heading">
-          <h3>
-            <?php echo $billet->title(); ?>
-            <br><br>
-            <div class="date">le <?= $billet->dateModification(); ?></div>
-        </h3>
+            <h3>
+              <?php echo $billet->title(); ?>
+              <br><br>
+              <div class="date">le <?= $billet->dateModification(); ?></div>
+            </h3>
           </div>
         </div>
       </div>
@@ -30,62 +30,63 @@
     $flash = $_SESSION['flash'];
     
 ?>
-    <div class="alert alert-success" role="alert">
-        <?= $flash ?>
-    </div>
+<div class="alert alert-success" role="alert">
+  <?= $flash ?>
+</div>
 <?php   
 } 
 unset($_SESSION['flash']);
 ?>
-<div class="container" align="center">
-    
-        
-        <?= $billet->content() ?>
-    
+<div class="container">
 
-    <div class="comment">
 
-        <form method="post" action="index.php?action=billet&billet=<?= $_GET['billet'] ?>" method="post">
-        <div class="addComment">
-            <div class="addComment_name">  
-                <input type="text" name="author" id="author" placeholder="Auteur" />
-                <p class="error"><?php if(isset($error_author)){ echo $error_author; }?></p>
-            </div>
-            <div class="addComment_com"  >    
-                <textarea type="text" name="comment" class='commentaire' placeholder="Commentaire"></textarea><br />
-                <p class="error"><?php if(isset($error_comment)){ echo $error_comment; } ?></p>
-            </div>
-            <input class="btn_submit_edit_com" type="submit" value="Envoyer" />
+  <?= $billet->content() ?>
+
+  <h4 align="left">Laissez un commentaire</h4>
+  <br>
+  <div class="comment">
+
+    <form method="post" action="index.php?action=billet&billet=<?= $_GET['billet'] ?>" method="post">
+      <div class="addComment">
+        <div class="addComment_name">
+          <input required type="text" name="author" id="author" placeholder="Auteur" />
+          <p class="error"><?php if(isset($error_author)){ echo $error_author; }?></p>
         </div>
-        </form>
-    <table class="table table-hover table-dark">
-    <thead>
-    <tr class="header_tab">
+        <div class="addComment_com">
+          <textarea type="text" name="comment" class='commentaire' placeholder="Commentaire"></textarea>
+          <p class="error"><?php if(isset($error_comment)){ echo $error_comment; } ?></p>
+        </div>
+        <input class="btn_submit_edit_com" type="submit" value="Poster"  />
+      </div>
+     
+    </form>
+    <br>
+    <div class="table-responsive">
+      <table class="table table-hover table-dark">
+        <thead>
+          <tr class="header_tab">
             <td scope="col" class="auteur">Auteur</td>
-            <td scope="col" class="commentaire">Commentaire</td> 
-    </tr>
-    </thead>
-    <tbody>
-    <h4>Commentaires</h4>
-    <?php foreach($comments as $comment) { ?>
+            <td scope="col" class="comment">Commentaire</td>
+          </tr>
+        </thead>
+        <tbody>
+<?php foreach($comments as $comment) { ?>
 
-        <tr>
-        
+          <tr>
             <td><strong><?= $comment->author() ?></strong><br>
-            <?= $comment->dateComment() ?></td>
+              <div class="date"><?= $comment->dateComment() ?></div></td>
             <td><?= $comment->comment() ?></td>
             <td>
-            <a class="btn btn-primary" type="submit" name="signaler">Signaler</a>
-            </td>     
-        </tr>
-    
-        
-    <?php } // Fin de la boucle des comments?>
-    </tbody>
-
+              <a class="btn btn-primary_signaler" type="submit" name="signaler">Signaler</a>
+            </td>
+          </tr>
+        </tbody>
+    </div>
+<?php } ?>
+  </div>
 </div>
 
-<?php $content = ob_get_clean(); ?>
+  <?php $content = ob_get_clean(); ?>
 
 
-<?php require('template.php'); ?>
+  <?php require('template.php'); ?>

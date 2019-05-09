@@ -28,30 +28,33 @@ unset($_SESSION['flash']);
 
     <h4>Modération des commentaires</h4>
     <br><br>
-    <div class="container">
+    <div class="table-responsive">
 
 
     <table class="table table-hover table-dark">
     <thead>
     <tr class="header_tab">
-            <td scope="col" class="auteur">Auteur</td>
-            <td scope="col" class="date">Commentaire</td>
-            <td scope="col" class="date">Signalement</td>
-            <td scope="col" class="supp">Suppression</td>
+            <td scope="col" >Auteur</td>
+            <td scope="col" >Commentaire</td>
+            <td scope="col" >Signalement</td>
+            <td scope="col" >Suppression</td>
     </tr>
     </thead>
     <tbody>
-    <?php foreach ($comments as $comment) { ?>
+    <?php foreach ($comments as $comment) { 
+        $com = $comment->comment();
+        $resumeComment = substr($com, 0, 80);
+    ?>
         <tr class="btn_modif">
         
-        <td><strong><?php echo $comment->author(); ?></strong> le <?php echo $comment->dateComment(); ?></td>
-        <td><?php echo $comment->comment() ?></td>
+        <td><strong><?php echo $comment->author(); ?></strong><div class="date">le <?php echo $comment->dateComment(); ?></div></td>
+        <td><?php echo $resumeComment ?>...</td>
         <td><?php echo $comment->signaler() ?></td>
         <td>
             
             <form action="index.php?action=deleteComment&billet=<?= $_GET['billet'] ?>" method="post">
                 <input type="hidden" value="<?= $comment->id(); ?>" name="idComment">
-                <input class="btn btn-primary" name="delete" type="submit" value="Supprimer">
+                <input class="btn btn-primary_delete" name="delete" type="submit" value="Supprimer">
             </form>
             
         </td>

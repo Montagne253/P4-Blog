@@ -10,12 +10,18 @@
             <form method="POST" action="index.php?action=connexion">
                 <div class="form-group">
                     <input required type="pseudo" name="pseudoConnect" placeholder="pseudo" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    
                 </div>
                 <div class="form-group">
                     <input required type="password" name="passwordconnect" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe">
                 </div><br><br>
                 <button type="submit" name="submitConnect" class="btn btn-primary">Se connecter</button>
+                <br><br>
+<?php 
+    if(isset($error))
+    {
+        echo '<font color="red">' . $error . "</font>";
+    }
+?>
             </form>
           </div>
         </div>
