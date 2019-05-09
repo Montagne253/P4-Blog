@@ -19,7 +19,7 @@ class Controller {
     {
 
         $billetManager = new BilletManager;
-        $billets = $billetManager->getListMod();
+        $billets = $billetManager->getList();
 
         require('view/frontend/listBilletView.php');
         
@@ -29,7 +29,7 @@ class Controller {
     function comment()
     {
         $billetManager = new BilletManager;
-        $billets = $billetManager->getListMod();
+        $billets = $billetManager->getList();
         require('view/frontend/editCommentView.php');
         
     }
@@ -68,6 +68,11 @@ class Controller {
     {
         $billetManager = new BilletManager;
         $billet = $billetManager->get($_GET['billet']);
+
+        if($billet==false) {
+            header('Location: index.php?action=error');
+            exit();
+        }
         
         $commentManager = new CommentManager;
         $comments = $commentManager->getList($_GET['billet']);
@@ -96,8 +101,24 @@ class Controller {
         
                     $commentManager = new CommentManager;
                     $commentManager->add($comment);
+
+                    if(isset($_GET['comment'])) {
+
+                        if(isset($_POST['signaler'])) {   
+
+                            $signaler = $_POST['signaler'];
+                        
+                            $signal = new Comment(array(
+                                'signaler' => $signaler,
+                                'id' => $_GET['comment']
+                            ));
+                            $editSignal = new CommentManager();
+                            $editSignal->update($signal);
+                            
+                        }
+
+                    }
                     
-        
                     $_SESSION['flash'] = "Votre commentaire a bien été posté !";
                     
                     
@@ -196,8 +217,9 @@ class Controller {
                                         $profilManager->add($newUser);
                                        
                                     
-                                    $_SESSION['flash'] = "Votre compe à été créé !";
+                                    $_SESSION['flash'] = "Votre compte à été créé !";
                                     header('Location: index.php?action=connexion');
+                                    exit();
                                 
                                      
                                 } else {
@@ -299,16 +321,17 @@ class Controller {
             $newAuthor = $_POST['newauthor'];
             $newTitle = $_POST['newtitle'];
             $newContent = $_POST['newcontent'];
+        
 
         
-            $paul = new Billet(array(
+            $newBillet = new Billet(array(
                 'author' => $newAuthor,
                 'title' => $newTitle,
                 'content' => $newContent,
                 'id' => $_GET['billet']
             ));
-            $pierre = new BilletManager();
-            $pierre->update($paul);
+            $editBillet = new BilletManager();
+            $editBillet->update($newBillet);
 
             
 
@@ -366,9 +389,6 @@ class Controller {
 
         require('view/frontend/editProfilView.php');
     }
-
-
-
 
 
     function connexion()

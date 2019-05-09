@@ -25,7 +25,14 @@ class BilletManager extends Manager
         ));
         $data = $req->fetch();
       
+        if ($data) {
         return new Billet($data);
+        }
+        else {
+            return false;
+        }
+
+
        
     }
 
@@ -47,13 +54,15 @@ class BilletManager extends Manager
         $db = $this->dbConnect();
         $billets = [];
     
-        $req = $db->query('SELECT id, author, title, content, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation_fr FROM billet ORDER BY date_creation DESC');
+        $req = $db->query('SELECT id, author, title, content, DATE_FORMAT(date_modification, \'%d/%m/%Y à %Hh%imin%ss\') AS date_modification_fr FROM billet ORDER BY date_modification DESC');
         while ($data = $req->fetch()) {
             $billets[] = new Billet($data);
         }
         return $billets;
         
     }
+
+    
 
     public function delete($id) 
     {
@@ -81,6 +90,7 @@ class BilletManager extends Manager
            "title" => $billet->title(),
            "content" => $billet->content(),
            "id" => $billet->id()
+        
         ));
     }
 }
