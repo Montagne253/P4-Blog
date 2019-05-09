@@ -72,6 +72,9 @@ try {
         {
             $controller->allBillet();
         }
+        else {
+            $controller->error();
+        }
        
     
     }
