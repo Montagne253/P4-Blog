@@ -73,11 +73,11 @@ unset($_SESSION['flash']);
 <?php foreach($comments as $comment) { ?>
 
           <tr>
-            <td><strong><?= $comment->author() ?></strong><br>
+            <td><strong><?= htmlspecialchars($comment->author()) ?></strong><br>
               <div class="date"><?= $comment->dateComment() ?></div></td>
-            <td><?= $comment->comment() ?></td>
+            <td><?= htmlspecialchars($comment->comment()) ?></td>
             <td>
-              <a class="btn btn-primary_signaler" type="submit" name="signaler">Signaler</a>
+              <a class="btn btn-primary_signaler" href="index.php?action=billet&billet=<?= $_GET['billet'] ?>&signaler=<?= $comment->id() ?>">Signaler</a>
             </td>
           </tr>
         </tbody>

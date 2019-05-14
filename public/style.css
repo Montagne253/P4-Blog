@@ -58,7 +58,7 @@ h6 {
 .btn-primary_mind {
     background-color: #0085A1 !important;
     border-color: #0085A1 !important;
-    color: #fff;
+    color: #fff !important;
     margin: 10px;
 }
 
@@ -94,11 +94,12 @@ h6 {
 
 
 .btn-primary_signaler {
-    background-color: rgb(161, 0, 0);
-    border-color: rgb(161, 0, 0);
-    font-size: 10px;
-    font-weight: 800;
-    padding: 5px 12px;
+    background-color: rgb(161, 0, 0) !important;
+    border-color: rgb(161, 0, 0) !important;
+    color: #eee !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    padding: 2px 6px !important;
     letter-spacing: 1px;
     text-transform: uppercase;
     border-radius: 0;
@@ -107,13 +108,14 @@ h6 {
 }
 
 .btn-primary_signaler:hover {
-    background-color: rgba(161, 0, 0, 0.568);
+    background-color: rgba(94, 2, 2, 0.568) !important;
+    color: rgb(243, 6, 6) !important;
 }
 
 .btn-primary_delete {
-    background-color: rgb(161, 0, 0);
-    border-color: rgb(161, 0, 0);
-    color: #fff;
+    background-color: rgb(161, 0, 0) !important;
+    border-color: rgb(161, 0, 0) !important;
+    color: #fff !important;
     font-size: 14px;
     font-weight: 800;
     padding: 15px 15px;
@@ -130,9 +132,9 @@ h6 {
 }
 
 .btn-primary_disco {
-    background-color: rgb(161, 0, 0);
-    border-color: rgb(161, 0, 0);
-    color: #fff;
+    background-color: rgb(161, 0, 0) !important;
+    border-color: rgb(161, 0, 0) !important;
+    color: #fff !important;
     font-size: 14px;
     font-weight: 800;
     padding: 15px 15px;
@@ -144,7 +146,7 @@ h6 {
 }
 
 .btn-primary_disco:hover {
-    background-color: rgba(161, 0, 0, 0.767);
+    background-color: rgb(105, 1, 1) !important;
     color: #bbb;
 }
 
@@ -226,13 +228,25 @@ h6 {
     margin-left: 15px;
 }
 
+.form-group_m {
+    width: 50%;
+    margin-left: 25%;
+}
+
+/* form */
+
+
+
+
+
 /* MEDIA QUERIES */
 
 
 @media (max-width: 576px) {
     .btn_submit_edit_com {
-        width: 35%;
+        width: 40%;
         height: 10%;
+        padding: 2%;
         margin-top: 0;
         cursor: pointer;
         font-size: 20px;
@@ -255,11 +269,12 @@ h6 {
     .tools {
         font-size: 10px !important;
     }
+
 }
 
 @media (max-width: 768px) {
     .btn_submit_edit_com {
-        width: 30%;
+        width: 40%;
         height: 10%;
         margin-top: 0;
         cursor: pointer;
@@ -284,6 +299,31 @@ h6 {
     .tools {
         font-size: 10px !important;
     }
+
+    .form-group_m {
+        width: 100%;
+        margin-left: 0 !important;
+    }
+
+    .btn-primary_signaler {
+        background-color: rgb(161, 0, 0) !important;
+        border-color: rgb(161, 0, 0) !important;
+        color: #eee !important;
+        font-size: 10px !important;
+        font-weight: 600 !important;
+        padding: 2px 6px !important;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        border-radius: 0;
+        font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        width: 100%;
+    }
+    
+    .btn-primary_signaler:hover {
+        background-color: rgba(94, 2, 2, 0.568) !important;
+        color: rgb(243, 6, 6) !important;
+    }
+
 }
 
 
@@ -302,7 +342,7 @@ h6 {
 }
 
 
-@media (min-width: 1200px) {
+@media (min-width: 1020px) {
     .btn_submit_edit_com {
         width: 20%;
         height: 10%;
@@ -312,5 +352,9 @@ h6 {
         background-color: #fa9c18;
         color: #FFF;
         border: solid 1px #00657b;
+    }
+
+    .form-group {
+        width: 50%;
     }
 }

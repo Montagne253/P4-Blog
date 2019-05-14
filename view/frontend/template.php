@@ -30,7 +30,7 @@
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
   <!-- Bootstrap core CSS -->
-  <!-- <link href="public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
+  <link href="public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom fonts for this template -->
   <link href="public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -43,7 +43,8 @@
   <!-- Custom styles for this template -->
   <link href="public/css/clean-blog.min.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="public/style.css">
+  <link href="public/clean-blog.css" rel="stylesheet">
+
 
 
 

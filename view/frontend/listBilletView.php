@@ -46,7 +46,7 @@
         </h3>
         <p class="post-meta">
           <a href="index.php?action=about"><?= $billet->author() ?></a>
-          <?= $billet->dateCreation() ?>
+          le <?= $billet->dateCreation() ?>
         </p>
       </div>
       <hr>
