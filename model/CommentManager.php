@@ -47,14 +47,18 @@ class CommentManager extends Manager
         ]);
     }
 
-    public function update(Comment $comment)
+    public function updateSignal(Comment $comment)
     {
+        // var_dump($comment);
+        // die();
         $db  = $this->dbConnect();
-        $req = $db->prepare('UPDATE comment SET signaler = signaler + 1 WHERE id = ?');
+        $req = $db->prepare('UPDATE comment SET signaler = :signaler  WHERE id = :id');
         $req->execute(array(
             "id" => $comment->id(),
             "signaler" => $comment->signaler()
+    
         ));
+
         
     }
     

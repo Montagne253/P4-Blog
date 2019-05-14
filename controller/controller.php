@@ -3,8 +3,6 @@
 
 class Controller {
 
-
-
     function listBillet()
     {
 
@@ -102,22 +100,10 @@ class Controller {
                     $commentManager = new CommentManager;
                     $commentManager->add($comment);
 
-                    if(isset($_GET['comment'])) {
-
-                        if(isset($_POST['signaler'])) {   
-
-                            $signaler = $_POST['signaler'];
-                        
-                            $signal = new Comment(array(
-                                'signaler' => $signaler,
-                                'id' => $_GET['comment']
-                            ));
-                            $editSignal = new CommentManager();
-                            $editSignal->update($signal);
-                            
-                        }
 
                     }
+
+
                     
                     $_SESSION['flash'] = "Votre commentaire a bien été posté !";
                     
@@ -127,9 +113,22 @@ class Controller {
                     exit();
         
                 }
+                
+                
+
+                if(isset($_GET['signaler'])) {   
+                    
+                        $signal = new Comment(array(
+                            'signaler' => 1,
+                            'id' => $_GET['signaler']
+                        ));
+                        $editSignal = new CommentManager();
+                        $editSignal->updateSignal($signal);
+                        
+                }
         
         
-            }
+            
 
         require('view/frontend/billetView.php');
         
@@ -427,7 +426,7 @@ class Controller {
                     }
                     else 
                     {
-                        $error = "Mauvais email ou mot de passe incorrect !";
+                        $error = "Mauvais pseudo ou mot de passe incorrect !";
                     }
                 }
                 else 
