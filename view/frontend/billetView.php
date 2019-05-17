@@ -1,9 +1,12 @@
 <?php $title = "Jean Forteroche | Billet simple pour l'Alaska"?>
+
+<?php ob_start(); ?>
+
 <?php require('nav.php'); ?>
 
 <div class="container-full">
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('public/img/alaskaNight.jpg')">
+  <header class="masthead" style="background-image: url('public/img/alaskaNight.webp')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
@@ -21,9 +24,6 @@
   </header>
 
 </div>
-<?php ob_start(); ?>
-
-
 
 
 <?php  if(isset($_SESSION['flash'])) { 
@@ -56,9 +56,9 @@ unset($_SESSION['flash']);
           <textarea type="text" name="comment" class='commentaire' placeholder="Commentaire"></textarea>
           <p class="error"><?php if(isset($error_comment)){ echo $error_comment; } ?></p>
         </div>
-        <input class="btn_submit_edit_com" type="submit" value="Poster"  />
+        <input class="btn_submit_edit_com" type="submit" value="Poster" />
       </div>
-     
+
     </form>
     <br>
     <div class="table-responsive">
@@ -70,23 +70,23 @@ unset($_SESSION['flash']);
           </tr>
         </thead>
         <tbody>
-<?php foreach($comments as $comment) { ?>
+          <?php foreach($comments as $comment) { ?>
 
           <tr>
             <td><strong><?= htmlspecialchars($comment->author()) ?></strong><br>
-              <div class="date"><?= $comment->dateComment() ?></div></td>
+              <div class="date"><?= $comment->dateComment() ?></div>
+            </td>
             <td><?= htmlspecialchars($comment->comment()) ?></td>
             <td>
-              <a class="btn btn-primary_signaler" href="index.php?action=billet&billet=<?= $_GET['billet'] ?>&signaler=<?= $comment->id() ?>">Signaler</a>
+              <a class="btn btn-primary_signaler"
+                href="index.php?action=billet&billet=<?= $_GET['billet'] ?>&signaler=<?= $comment->id() ?>">Signaler</a>
             </td>
           </tr>
         </tbody>
     </div>
-<?php } ?>
+    <?php } ?>
   </div>
 </div>
 
-  <?php $content = ob_get_clean(); ?>
-
-
-  <?php require('template.php'); ?>
+<?php $content = ob_get_clean(); ?>
+<?php require('template.php'); ?>

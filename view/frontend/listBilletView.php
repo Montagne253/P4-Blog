@@ -1,10 +1,13 @@
 <?php $title = 'Jean Laroche | Blog des écrivains'; ?>
+
+<?php ob_start(); ?>
+
 <?php require('nav.php'); ?>
 
 
 <div class="container-full">
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('public/img/alasky.jpg')">
+  <header class="masthead" style="background-image: url('public/img/alasky.webp')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
@@ -24,7 +27,6 @@
   </header>
 
 </div>
-<?php ob_start(); ?>
 
 <?php foreach ($billets as $billet) { 
     $content = $billet->content();

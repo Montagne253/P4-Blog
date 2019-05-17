@@ -1,8 +1,10 @@
 <?php $title = 'Jean Laroche | Blog des écrivains'; ?>
+
+<?php ob_start(); ?>
 <?php  require('nav.php'); ?>
 
 <div class="container-full">
-  <header class="masthead" style="background-image: url('public/img/profil.png')">
+  <header class="masthead" style="background-image: url('public/img/profil.webp')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
@@ -22,7 +24,6 @@
     </div>
   </header>
 </div>
-<?php ob_start(); ?>
 <div class="container">
   <div class="table-responsive" id="down">
     <table class="table table-dark">

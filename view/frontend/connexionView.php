@@ -1,7 +1,10 @@
 <?php $title = 'ADMIN' ?>
+
+<?php ob_start(); ?>
+
 <?php $header = require('nav.php'); ?>
 <div class="container-full">
-<header class="masthead" style="background-image: url('public/img/jean.jpg')">
+<header class="masthead" style="background-image: url('public/img/jean.webp')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row" >
@@ -29,8 +32,6 @@
     </div>
 </header>
 </div>
-<?php ob_start(); ?>
-
 
 <?php $footer = require('footer.php'); ?>
 <?php $content = ob_get_clean(); ?>

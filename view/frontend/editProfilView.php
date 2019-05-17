@@ -1,7 +1,9 @@
 <?php $title = 'ADMIN' ?>
+
+<?php ob_start(); ?>
+
 <?php  require('nav.php'); ?>
 <?php  require('header.php'); ?>
-<?php ob_start(); ?>
 
 <div class="container" align="center">
     <h2>Editer mon profil</h2>

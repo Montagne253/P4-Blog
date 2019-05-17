@@ -1,9 +1,12 @@
 <?php $title = 'ADMIN' ?>
+
+<?php ob_start(); ?>
+
 <?php  require('nav.php'); ?>
 <?php  require('header.php'); ?>
-<?php ob_start(); ?>
+
 <div class="container" align="center">
-    <h2>Modifier votre billet</h2>
+    <h2>Modifier votre billet</h2><br><br>
 
     <?php 
         if(isset($error))
@@ -14,7 +17,7 @@
     <form method="POST" action="index.php?action=edit&billet=<?= $billet->id(); ?>">
         <input required type="text" name="newauthor" placeholder="" value="<?=  $billet->author(); ?>"><br><br><br>
         <input required class="story" type="text" id="title" name="newtitle" rows="3" cols="110"
-            placeholder="Titre..."><?=  $billet->title(); ?></textarea><br><br><br>
+            placeholder="Titre..." value="<?=  $billet->title(); ?>"></textarea><br><br><br>
         <textarea class="story" type="text" id="mytextarea" name="newcontent" rows="50" cols="140"
             placeholder=""><?=  $billet->content(); ?></textarea><br>
 

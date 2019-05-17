@@ -1,7 +1,8 @@
 <?php $title = 'ADMIN' ?>
+
+<?php ob_start(); ?>
 <?php  require('nav.php'); ?>
 <?php  require('header.php'); ?>
-<?php ob_start(); ?>
 <?php  if(isset($_SESSION['flash'])) { 
     $flash = $_SESSION['flash'];
     
