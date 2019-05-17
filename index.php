@@ -18,9 +18,11 @@ $controller = new controller;
 
 try { 
     if (isset($_GET['action'])) {
-        if ($_GET['action'] == 'listBillet') {
-            $controller->listBillet();
-        } elseif ($_GET['action'] == 'billet')
+        if ($_GET['action'] == 'listBillet') 
+        {
+            $controller->index();
+        } 
+        elseif ($_GET['action'] == 'billet')
         { 
             $controller->billet();
         }
@@ -42,7 +44,7 @@ try {
         }
         elseif ($_GET['action'] == 'editComment')
         {
-            $controller->comment();
+            $controller->editComment();
         }
         elseif ($_GET['action'] == 'edit')
         {
@@ -70,7 +72,7 @@ try {
         }
         elseif ($_GET['action'] == 'allBillet')
         {
-            $controller->allBillet();
+            $controller->listBillet();
         }
         else {
             $controller->error();
@@ -79,7 +81,7 @@ try {
     
     }
     else {
-            $controller->listBillet();
+            $controller->index();
     }
 }
 catch(Exception $e) { 

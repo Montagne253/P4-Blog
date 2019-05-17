@@ -3,7 +3,7 @@
 
 class Controller {
 
-    function listBillet()
+    function index()
     {
 
         $billetManager = new BilletManager;
@@ -13,7 +13,7 @@ class Controller {
         
     }
 
-    function allBillet()
+    function listBillet()
     {
 
         $billetManager = new BilletManager;
@@ -24,7 +24,7 @@ class Controller {
     }
 
 
-    function comment()
+    function editComment()
     {
         $billetManager = new BilletManager;
         $billets = $billetManager->getList();
@@ -155,91 +155,7 @@ class Controller {
 
     }
 
-    function signin()
-    {
-        if (isset($_POST['signin'])) 
-        {
-            $pseudo = htmlspecialchars($_POST['pseudo']);
-            $email = htmlspecialchars($_POST['email']);
-            $password = $_POST['password'];
-            $confirm_password = $_POST['confirm_password'];
-            $hash_password = password_hash($password, PASSWORD_BCRYPT);
-        
-            if (!empty($_POST['signin'])) {
-                
-
-                $validation = true;
-
-            
-                if(empty($_POST['pseudo'])) {
-                    $error_pseudo = 'Le pseudo est vide';
-                    $validation = false;
-
-                }
-                if(empty($_POST['email'])) {
-                    $error_message = 'Email est vide';
-                    $validation = false;
-                }
-                if($validation==true) {
-
-                    if (!empty($_POST['pseudo']) AND !empty($_POST['email']) AND !empty($_POST['password']) AND !empty($_POST['confirm_password'])) 
-                    {
-                            
-                            if(strlen($pseudo) <= 20) {
-                                
-
-                            } else {
-                                $error = 'Votre pseudo ne doit pas dépasser 20 caractéres !';
-                            }
-
-                            if(filter_var($email, FILTER_VALIDATE_EMAIL)) 
-                            {
-                        
-                                if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email']))
-                                {  
-                                } else {
-                                    $error = 'L\'adresse ' . $_POST['email'] . ' n\'est pas valide, recommencez !';
-                                }
-
-
-                                if($password == $confirm_password) 
-                                {
-                                    $hash_password = password_hash($password, PASSWORD_BCRYPT);
-                                    
-                            
-                                        $newUser = new Profil([
-                                            'pseudo' => $_POST['pseudo'],
-                                            'email' => $_POST['email'],
-                                            'pass' => $_POST['pass']
-                                        ]);
-                                        $ProfilManager = new ProfilManager;
-                                        $profilManager->add($newUser);
-                                       
-                                    
-                                    $_SESSION['flash'] = "Votre compte à été créé !";
-                                    header('Location: index.php?action=connexion');
-                                    exit();
-                                
-                                     
-                                } else {
-                                    $error = "Vos mots de passes ne correspondent pas !";
-                                }
-                                   
-                            }
-                    } else {
-                            $error = "Tous les champs doivent être complétés";
-                    }
-                }
-            }
-
-        }
-
-        require('view/frontend/signinView.php');
-    }
-
-
-
-
+    
     function create() 
     {
         if (!empty($_POST['submitedit'])) {
