@@ -1,4 +1,7 @@
 <?php
+
+use OpenClassrooms\Blog\Model;
+
 require_once("model/Manager.php"); 
 
 class BilletManager extends Manager

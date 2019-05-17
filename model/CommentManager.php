@@ -1,4 +1,6 @@
 <?php
+use OpenClassrooms\Blog\Model;
+
 require_once("model/Manager.php"); 
 
 class CommentManager extends Manager
@@ -6,6 +8,7 @@ class CommentManager extends Manager
 
     
     public function getList($id) {
+
         $db = $this->dbConnect();
         
         $comments = [];

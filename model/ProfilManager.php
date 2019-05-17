@@ -1,4 +1,6 @@
 <?php
+use OpenClassrooms\Blog\Model;
+
 require_once('model/Manager.php');
 
 class ProfilManager extends Manager
